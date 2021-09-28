@@ -2,20 +2,20 @@ import React, {useState, useEffect} from "react";
 import Header from "./Header";
 import AddButton from "./AddButton";
 import ListRoutines from "./ListRoutines"
-import Form from "./Form";
+import MyModal from "./MyModal"
 import 'react-bulma-components'
-import {Modal, Container} from "react-bulma-components";
-import {getRoutines, saveRoutine} from "../services";
+import {Container} from "react-bulma-components";
+import {getRoutines} from "../services";
 import Loading from "./Loading";
 
 
 const RoutineLayout = () =>{
-    const [isModalOpen, setIsModalOpen] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
     const [routines, setRoutines ] = useState([])
+    const [isModalOpenParam, setIsModalOpen] = useState(false)
+
     async function loadRoutines(){
         const response = await getRoutines()
-        console.log(response)
         if (response.status===200){
             setRoutines(response.data.routines)
         }
@@ -26,15 +26,10 @@ const RoutineLayout = () =>{
             loadRoutines()
         },[]
     )
-    const handlerSubmit = async (data) => {
-        await saveRoutine(data)
-        loadRoutines()
-        console.log(routines)
-        setIsModalOpen(false)
-    }
+
     return (
         <Container>
-            <Header title={"Bienvenido a Facilitator Routine"}></Header>
+            <Header title={"Listado de Rutinas"}></Header>
             <AddButton onClick={()=>setIsModalOpen(true)}></AddButton>
             {
                 isLoading && <Loading></Loading>
@@ -45,23 +40,10 @@ const RoutineLayout = () =>{
             {
                 !isLoading && routines.length && <ListRoutines routines={routines}></ListRoutines>
             }
+            <MyModal isModalOpen={isModalOpenParam} setIsModalOpen={setIsModalOpen} loadRutines={loadRoutines}></MyModal>
 
-            <Modal show={isModalOpen} onClose={()=> setIsModalOpen(false)}>
-                <Modal.Card>
-                    <Modal.Card.Header>
-                        <Modal.Card.Title>
-                            Crear Rutina
-                        </Modal.Card.Title>
-                    </Modal.Card.Header>
-                    <Modal.Card.Body>
-                        <Form handlerSubmit={handlerSubmit}>
 
-                        </Form>
-                    </Modal.Card.Body>
-                </Modal.Card>
-            </Modal>
         </Container>
         )
 }
-
 export default RoutineLayout

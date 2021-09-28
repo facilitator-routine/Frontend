@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bulma/css/bulma.min.css';
 import 'react-bulma-components'
-import RoutineLayout from "./Routines/components/RoutineLayout";
 import reportWebVitals from './reportWebVitals';
+import Home from "./Home/components/Home";
 
 ReactDOM.render(
   <React.StrictMode>
-    <RoutineLayout />
+    <Home/>
   </React.StrictMode>,
   document.getElementById('root')
 );
