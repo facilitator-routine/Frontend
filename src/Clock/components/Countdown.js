@@ -8,7 +8,7 @@ function Countdown() {
     return (
         <Container>
             <MyNavbar></MyNavbar>
-            <ClockLayout initialSecond={50} initialMinute={0}></ClockLayout>
+            <ClockLayout initialSecond={0} initialMinute={0} isCountDown={true} configuredFlag={true}></ClockLayout>
             <MyFooter/>
         </Container>
     );

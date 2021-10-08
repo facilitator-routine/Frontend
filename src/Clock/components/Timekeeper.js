@@ -9,7 +9,7 @@ function Timekeeper() {
     return (
         <Container>
             <MyNavbar></MyNavbar>
-            <ClockLayout initialSecond={0} initialMinute={0}></ClockLayout>
+            <ClockLayout initialSecond={0} initialMinute={0} isCountDown={false} configuredFlag={false}></ClockLayout>
             <MyFooter/>
         </Container>
     );
