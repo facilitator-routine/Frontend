@@ -1,10 +1,10 @@
 import React from "react";
 import {Container} from "react-bulma-components";
-const Clock = () =>{
+
+const Clock = ({getMinutes, getSeconds}) =>{
     return (
         <Container>
-
-            <h2 className="title has-text-centered">00:00</h2>
+            <h1 className="has-text-centered">{getMinutes()}:{getSeconds()}</h1>
         </Container>
     )
 }

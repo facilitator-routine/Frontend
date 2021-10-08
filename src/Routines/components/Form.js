@@ -1,15 +1,16 @@
 import React, {useState} from "react";
-import {Form as BulmaForm, Button} from "react-bulma-components";
+import {Button, Form as BulmaForm} from "react-bulma-components";
+
 const {Field, Control, Label , Input} = BulmaForm
-const Form = ({handlerSubmit, routine}) =>{
+const Form = ({handlerSubmit, routine: {_id, alarm, background, description, name, steps}}) =>{
 
     const [formValue, setFormValue] = useState({
-        _id: routine?._id || '',
-        name: routine?.name ||``,
-        description: routine?.description || ``,
-        steps: routine?.steps || 1,
-        alarm: routine?.alarm || ``,
-        background: routine?.background || ``
+        _id: _id || '',
+        name: name ||``,
+        description: description || ``,
+        steps: steps || 1,
+        alarm: alarm || ``,
+        background: background || ``
     })
 
     const handlerChange = (event) =>{
