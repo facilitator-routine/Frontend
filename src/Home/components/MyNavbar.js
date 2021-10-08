@@ -4,13 +4,12 @@ import {Navbar, Container} from "react-bulma-components";
 const MyNavbar = () =>{
     return (
         <Container>
-            <Navbar>
+            <Navbar >
                 <Navbar.Brand>
-                    <Navbar.Item href="#">
-                        <img
-                            alt="Bulma: a modern CSS framework based on Flexbox"
-                            height="28"
-                            src="https://bulma.io/images/bulma-logo.png"
+                    <Navbar.Item href="/">
+                        <img className={"App-logo"}
+                            alt="Facilitator routine"
+                            src="./logo.png"
                             width="112"
                         />
                     </Navbar.Item>
@@ -18,30 +17,29 @@ const MyNavbar = () =>{
                 </Navbar.Brand>
                 <Navbar.Menu>
                     <Navbar.Container>
-                        <Navbar.Item href="#">
-                            <Navbar.Link>
-                                First
-                            </Navbar.Link>
-                            <Navbar.Dropdown>
-                                <Navbar.Item href="#">
-                                    Subitem 1
-                                </Navbar.Item>
-                                <Navbar.Item href="#">
-                                    Subitem 2
-                                </Navbar.Item>
-                                <Navbar.Divider />
-                                <Navbar.Item href="#">
-                                    After divider
-                                </Navbar.Item>
-                            </Navbar.Dropdown>
+                        <Navbar.Item href="/timekeeper">
+                                Cronometro
                         </Navbar.Item>
-                        <Navbar.Item href="#">
-                            Second
+                        <Navbar.Item href="/countdown">
+                                Cuenta Regresiva
+                        </Navbar.Item>
+                        <Navbar.Item href="/routines">
+                            Mis Rutinas
                         </Navbar.Item>
                     </Navbar.Container>
                     <Navbar.Container align="end">
                         <Navbar.Item href="#">
-                            At the end
+                            <Navbar.Link>
+                              Mi Cuenta
+                            </Navbar.Link>
+                            <Navbar.Dropdown>
+                                <Navbar.Item href="#">
+                                    Configuración
+                                </Navbar.Item>
+                                <Navbar.Item href="#">
+                                    Cerrar Sesión
+                                </Navbar.Item>
+                            </Navbar.Dropdown>
                         </Navbar.Item>
                     </Navbar.Container>
                 </Navbar.Menu>

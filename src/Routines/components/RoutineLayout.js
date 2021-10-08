@@ -38,9 +38,9 @@ const RoutineLayout = () =>{
               !isLoading && routines.length===0 && <h2 className="title has-text-centered">No hay Rutinas creadas</h2>
             }
             {
-                !isLoading && routines.length && <ListRoutines routines={routines}></ListRoutines>
+                !isLoading && routines.length && <ListRoutines routines={routines} loadRoutines={loadRoutines}></ListRoutines>
             }
-            <MyModal isModalOpen={isModalOpenParam} setIsModalOpen={setIsModalOpen} loadRutines={loadRoutines}></MyModal>
+            <MyModal isModalOpen={isModalOpenParam} setIsModalOpen={setIsModalOpen} loadRoutines={loadRoutines}></MyModal>
 
 
         </Container>

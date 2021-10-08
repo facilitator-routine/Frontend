@@ -1,15 +1,19 @@
 import React from "react";
 import {Modal, Container} from "react-bulma-components";
 import Form from "./Form";
-import {saveRoutine} from "../services";
-const MyModal = ({isModalOpen, setIsModalOpen, loadRutines}) =>{
+import {saveRoutine, updateRoutines} from "../services";
+const MyModal = ({isModalOpen, setIsModalOpen, loadRoutines, routine}) =>{
+    const titulo = routine?"Editar Rutina":"Crear Rutina"
     const handlerSubmit = async (data) => {
-        await saveRoutine(data)
+        if(routine){
+            await updateRoutines(data)
+        }
+        else{await saveRoutine(data)}
         _onClose()
     }
     const _onClose=()=>{
         setIsModalOpen(false)
-        loadRutines()
+        loadRoutines()
     }
     return (
         <Container>
@@ -17,11 +21,11 @@ const MyModal = ({isModalOpen, setIsModalOpen, loadRutines}) =>{
                     <Modal.Card>
                         <Modal.Card.Header>
                             <Modal.Card.Title>
-                                Crear Rutina
+                                {titulo}
                             </Modal.Card.Title>
                         </Modal.Card.Header>
                         <Modal.Card.Body>
-                            <Form handlerSubmit={handlerSubmit}>
+                            <Form handlerSubmit={handlerSubmit} routine={routine}>
                             </Form>
                         </Modal.Card.Body>
                     </Modal.Card>

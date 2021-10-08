@@ -1,17 +1,17 @@
 import React, {useState} from "react";
 import {Form as BulmaForm, Button} from "react-bulma-components";
 const {Field, Control, Label , Input} = BulmaForm
-const Form = ({handlerSubmit}) =>{
-
+const Form = ({handlerSubmit, routine}) =>{
 
     const [formValue, setFormValue] = useState({
-
-        name:``,
-        description:``,
-        steps:1,
-        alarm:``,
-        background:``
+        _id: routine?._id || '',
+        name: routine?.name ||``,
+        description: routine?.description || ``,
+        steps: routine?.steps || 1,
+        alarm: routine?.alarm || ``,
+        background: routine?.background || ``
     })
+
     const handlerChange = (event) =>{
         const {name, value} = event.target
         setFormValue({...formValue, [name]:value})
@@ -23,6 +23,17 @@ const Form = ({handlerSubmit}) =>{
     }
     return (
         <form onSubmit={_handlerSubmit}>
+            <Field>
+                <Control>
+                    <Input placeholder="textinput"
+                           name="_id"
+                           value={formValue._id}
+                           type="hidden"
+                    >
+
+                    </Input>
+                </Control>
+            </Field>
             <Field>
                 <Label>
                     Nombre de la Rutina
