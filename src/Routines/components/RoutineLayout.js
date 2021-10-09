@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import Header from "./Header";
 import AddButton from "./AddButton";
 import ListRoutines from "./ListRoutines"
@@ -14,6 +14,14 @@ const RoutineLayout = () =>{
     const [routines, setRoutines ] = useState([])
     const [isModalOpenParam, setIsModalOpen] = useState(false)
 
+    const routine = {
+        _id: '',
+        name:'',
+        description: ``,
+        steps: '',
+        alarm:  ``,
+        background: ``
+    }
     async function loadRoutines(){
         const response = await getRoutines()
         if (response.status===200){
@@ -40,7 +48,7 @@ const RoutineLayout = () =>{
             {
                 !isLoading && routines.length && <ListRoutines routines={routines} loadRoutines={loadRoutines}></ListRoutines>
             }
-            <MyModal isModalOpen={isModalOpenParam} setIsModalOpen={setIsModalOpen} loadRoutines={loadRoutines}></MyModal>
+            <MyModal isModalOpen={isModalOpenParam} setIsModalOpen={setIsModalOpen} loadRoutines={loadRoutines} routine={routine}></MyModal>
 
 
         </Container>

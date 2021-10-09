@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import ClockControls from "./ClockControls";
 import {Button, Container, Form as BulmaForm} from "react-bulma-components";
 
-const {Input} = BulmaForm
+const {Input, Label} = BulmaForm
 
 
 const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown}) =>{
@@ -66,7 +66,6 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown}
             }
         })
         if (hasNextMinute) setMinuts((prevM) => prevM + 1)
-        //return ('0' + minuts % 60).slice(-2)
     }
     const startDecrease = () => {
         if(!intervalRef.current){
@@ -101,22 +100,30 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown}
         return () => clearInterval(intervalRef.current);
     }, []);
 
+    const getTimer = () => {
+      return getMinutes().toString().padStart(2, "0")+':'+ getSeconds().toString().padStart(2, "0")
+    }
     return (
         <Container>
             <div hidden={isConfiguring}>
-                <span className="timer">{getMinutes()}:{getSeconds()}</span>
-                <ClockControls onClickStop={stop} onClickStart={handlerStart} onClickPause={pause}></ClockControls>
+                <span className="timer">{getTimer()}</span>
+                <ClockControls onClickStop={stop} onClickStart={handlerStart} onClickPause={pause}/>
             </div>
-            <div hidden={!isConfiguring} className="countdown">
-                <Input  class="input is-small"
+            <div hidden={!isConfiguring}>
+                <Label className="clockLabel">
+                    Ingrese Minutos y segundos:
+                </Label>
+                <br/>
+                <Input  class="input countdown-item"
                     placeholder="minutos"
                        min={0}
                        type="number"
                        name="minuts"
                        value={getMinutes()}
                        onChange={handlerChangeMinutes}>
-                </Input> :
-                <Input  class="input is-small"
+                </Input>
+                <span  class="countdown-item countdown-divisor">:</span>
+                <Input  class="input countdown-item"
                     placeholder="segundos"
                        min={0}
                        max={59}
@@ -125,8 +132,9 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown}
                        value={getSeconds()}
                        onChange={handlerChangeSeconds}>
                 </Input>
-                <Button onClick={()=>setIsConfiguring(false)} color="primary">OK!</Button>
-                <Button onClick={coffeBreck} color="primary">Coffe Breck</Button>
+                <br/>
+                <Button className={"clockControl"}  onClick={()=>setIsConfiguring(false)} color="primary">OK!</Button>
+                <Button className={"clockControl"}  onClick={coffeBreck} color="primary" >Coffe Breack</Button>
 
             </div>
 

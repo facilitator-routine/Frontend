@@ -3,8 +3,10 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 10vmin;
   pointer-events: none;
+  max-height: none;
+
 }
 
 .App-header {
@@ -16,10 +18,6 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
@@ -35,6 +33,33 @@
   font-size: 30vw;
 }
 
-.countdown{
+.footer {
+  background: lightgoldenrodyellow;
+  margin-top: 3rem;
+  padding: 1rem 1rem 1rem;
+}
 
+.countdown-item{
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 40%;
+  margin-block-end: 5%;
+  margin-block-start: 5%;
+  font-size: calc(100px + 2vmin);
+
+}
+.clockLabel{
+  margin-top: auto;
+
+}
+.countdown-divisor{
+  line-height: 2.0;
+}
+.navbar{
+  border-bottom-color: lightgoldenrodyellow;
+}
+.clockControl{
+  margin-left: 1rem;
 }

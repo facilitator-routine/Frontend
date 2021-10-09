@@ -4,7 +4,7 @@ import {Container, Footer} from "react-bulma-components";
 const MyFooter = () =>{
     return (
         <Container>
-            <Footer>
+            <Footer className={"footer"}>
                 Software bajo licencia MIT
             </Footer>
         </Container>

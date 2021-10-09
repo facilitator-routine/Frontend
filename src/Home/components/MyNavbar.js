@@ -1,16 +1,17 @@
 import React from "react";
-import {Navbar, Container} from "react-bulma-components";
+import {Container, Navbar} from "react-bulma-components";
 
 const MyNavbar = () =>{
     return (
         <Container>
-            <Navbar >
+            <Navbar className={"navbar"}>
                 <Navbar.Brand>
-                    <Navbar.Item href="/">
+                    <Navbar.Item href="/" style={ { maxHeight: 'none'}}>
                         <img className={"App-logo"}
                             alt="Facilitator routine"
                             src="./logo.png"
                             width="112"
+                             height="10vmin"
                         />
                     </Navbar.Item>
                     <Navbar.Burger />

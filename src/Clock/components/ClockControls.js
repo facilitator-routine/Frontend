@@ -5,9 +5,9 @@ const ClockControls = ({onClickStart,onClickPause,onClickStop}) =>{
     return (
         <Container>
              <div >
-                 <Button onClick={onClickStart} color="primary">Start</Button>
-                 <Button onClick={onClickPause} color="primary">Pause</Button>
-                 <Button onClick={onClickStop} color="primary">Stop</Button>
+                 <Button className={"clockControl"} onClick={onClickStart} color="primary">Start</Button>
+                 <Button className={"clockControl"} onClick={onClickPause} color="primary">Pause</Button>
+                 <Button className={"clockControl"} onClick={onClickStop} color="primary">Stop</Button>
              </div>
         </Container>
     )
