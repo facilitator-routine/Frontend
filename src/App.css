@@ -38,7 +38,13 @@
   margin-top: 3rem;
   padding: 1rem 1rem 1rem;
 }
+#login {
+  display: block;
+}
 
+#loggedin {
+  display: none;
+}
 .countdown-item{
   display: inline-block;
   position: relative;
@@ -63,3 +69,10 @@
 .clockControl{
   margin-left: 1rem;
 }
+
+
+
+
+
+
+
