@@ -3,6 +3,10 @@ import {Container, Navbar} from "react-bulma-components";
 import {Link} from "react-router-dom";
 import {logout} from "../services";
 
+const logoutAndRefresh = async (access_token)  =>{
+    await logout(access_token)
+    window.location="/"
+}
 const MyNavbar = ({access_token}) =>{
     return (
         <Container>
@@ -35,7 +39,7 @@ const MyNavbar = ({access_token}) =>{
                             <Link to="/auth/login" className="navbar-item">
                                 Login
                             </Link>:
-                            <a className="navbar-item" onClick={()=>logout(access_token)} >Cerrar Sesion</a>
+                            <a className="navbar-item" onClick={()=>logoutAndRefresh(access_token)} >Cerrar Sesion</a>
                         }
                     </Navbar.Container>
                 </Navbar.Menu>
