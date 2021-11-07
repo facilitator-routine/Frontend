@@ -114,7 +114,7 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown}
                     Ingrese Minutos y segundos:
                 </Label>
                 <br/>
-                <Input  class="input countdown-item"
+                <Input  className="input countdown-item"
                     placeholder="minutos"
                        min={0}
                        type="number"
@@ -122,8 +122,8 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown}
                        value={getMinutes()}
                        onChange={handlerChangeMinutes}>
                 </Input>
-                <span  class="countdown-item countdown-divisor">:</span>
-                <Input  class="input countdown-item"
+                <span  className="countdown-item countdown-divisor">:</span>
+                <Input  className="input countdown-item"
                     placeholder="segundos"
                        min={0}
                        max={59}

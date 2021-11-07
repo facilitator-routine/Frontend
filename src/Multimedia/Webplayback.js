@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import '../App.css';
+import MoActiveLevel from "./NoActiveLevel";
+import ActiveLevel from "./ActiveLevel";
 
 const track = {
     name: "",
@@ -50,7 +52,7 @@ function WebPlayback(props: { token: * }) {
                     if (!state) {
                         return;
                     }
-
+                    console.log('soy un state', state);
                     setTrack(state.track_window.current_track);
                     setPaused(state.paused);
 
@@ -67,40 +69,11 @@ function WebPlayback(props: { token: * }) {
 
         if (!is_active) {
             return (
-                <>
-                    <div className="container">
-                        <div className="main-wrapper">
-                            <b> Por favor, asocia Facilitar Routine a tus app permitidas. Selecciona 'Escuchando en: Facilitator Routine' </b>
-                        </div>
-                    </div>
-                </>)
+                <MoActiveLevel/>
+            )
         } else {
             return (
-                <>
-                    <div className="container">
-                        <div className="main-wrapper">
-
-                            <img src={current_track.album.images[0].url} className="now-playing__cover" alt="" />
-
-                            <div className="now-playing__side">
-                                <div className="now-playing__name">{current_track.name}</div>
-                                <div className="now-playing__artist">{current_track.artists[0].name}</div>
-
-                                <button className="btn-spotify" onClick={() => { player.previousTrack() }} >
-                                    &lt;&lt;
-                                </button>
-
-                                <button className="btn-spotify" onClick={() => { player.togglePlay() }} >
-                                    { is_paused ? "PLAY" : "PAUSE" }
-                                </button>
-
-                                <button className="btn-spotify" onClick={() => { player.nextTrack() }} >
-                                    &gt;&gt;
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </>
+                   <ActiveLevel current_track={current_track} player={player} is_paused={is_paused}/>
             );
         }
 }

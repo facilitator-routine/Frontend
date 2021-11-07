@@ -1,22 +1,13 @@
 import '../../App.css';
 import {Container} from "react-bulma-components";
-import MyNavbar from "./MyNavbar";
-import MyFooter from "./MyFooter";
 import React from 'react';
 import Login from './Login'
-import WebPlayback from "../../Multimedia/Webplayback";
 
-function Home() {
-    const search = window.location.search;
-    const params = new URLSearchParams(search);
-    const access_token = params.get('access_token');
+function Home({token}) {
+    console.log("token de router" + token)
     return (
         <Container>
-            <MyNavbar/>
-            <>
-            { access_token ? <WebPlayback token={access_token} /> : <Login/> }
-            </>
-            <MyFooter/>
+            {token? <span> Hola</span>:<Login/>}
         </Container>
     );
 }

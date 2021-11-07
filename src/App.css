@@ -10,7 +10,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: lightyellow;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -69,7 +69,20 @@
 .clockControl{
   margin-left: 1rem;
 }
+.main-wrapper{
+  background-color: darkseagreen;
+}
 
+.player-image{
+  max-height: 50px;
+  max-width: 50px;
+}
+
+.player-container{
+  border: 2px dashed yellowgreen;
+  padding: 3px;
+
+}
 
 
 
