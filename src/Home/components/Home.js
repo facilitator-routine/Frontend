@@ -4,7 +4,6 @@ import React from 'react';
 import Login from './Login'
 
 function Home({token}) {
-    console.log("token de router" + token)
     return (
         <Container>
             {token? <span> Hola</span>:<Login/>}

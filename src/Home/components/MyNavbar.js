@@ -1,6 +1,7 @@
 import React from "react";
 import {Container, Navbar} from "react-bulma-components";
 import {Link} from "react-router-dom";
+import {logout} from "../services";
 
 const MyNavbar = ({access_token}) =>{
     return (
@@ -34,9 +35,7 @@ const MyNavbar = ({access_token}) =>{
                             <Link to="/auth/login" className="navbar-item">
                                 Login
                             </Link>:
-                            <Link to="/logout" className="navbar-item">
-                                Logout
-                            </Link>
+                            <a className="navbar-item" onClick={()=>logout(access_token)} >Cerrar Sesion</a>
                         }
                     </Navbar.Container>
                 </Navbar.Menu>
