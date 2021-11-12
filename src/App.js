@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Home from "./Home/components/Home";
@@ -22,9 +22,18 @@ const Layout = ({ children, access_token }) => {
 }
 
 function App() {
-    const search = window.location.search;
-    const params = new URLSearchParams(search);
-    const access_token = params.get('access_token');
+    const [access_token, setAccessToken] = useState('')
+
+    useEffect(() => {
+        const search = window.location.search;
+        const params = new URLSearchParams(search);
+        const token = sessionStorage.getItem('accessToken')
+        const t = token || params.get('t')
+        if (t) {
+            setAccessToken(t);
+            sessionStorage.setItem('accessToken', t)
+        }
+    }, []);
 
     return (
             <Router>
@@ -33,7 +42,9 @@ function App() {
                         <Route exact path="/" children={
                             <Home token={access_token}/>
                         } />
-                        <Route exact path="/routines" component={MyRoutines} />
+                        <Route exact path="/routines" children={
+                            <MyRoutines token={access_token}/>
+                        } />
                         <Route exact path="/countdown" component={Countdown} />
                         <Route exact path="/timekeeper" component={Timekeeper} />
                         <Route exact path="/auth/login" children={

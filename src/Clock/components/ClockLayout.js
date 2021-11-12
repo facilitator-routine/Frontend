@@ -113,7 +113,6 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown}
                 <Label className="clockLabel">
                     Ingrese Minutos y segundos:
                 </Label>
-                <br/>
                 <Input  className="input countdown-item"
                     placeholder="minutos"
                        min={0}
@@ -122,7 +121,7 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown}
                        value={getMinutes()}
                        onChange={handlerChangeMinutes}>
                 </Input>
-                <span  className="countdown-item countdown-divisor">:</span>
+                <span  className="countdown-divisor">:</span>
                 <Input  className="input countdown-item"
                     placeholder="segundos"
                        min={0}
@@ -132,10 +131,10 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown}
                        value={getSeconds()}
                        onChange={handlerChangeSeconds}>
                 </Input>
-                <br/>
-                <Button className={"clockControl"}  onClick={()=>setIsConfiguring(false)} color="primary">OK!</Button>
-                <Button className={"clockControl"}  onClick={coffeBreck} color="primary" >Coffe Breack</Button>
-
+                <div className={"btn-clocks"}>
+                    <Button className={"clockControl"}  onClick={()=>setIsConfiguring(false)} color="primary">OK!</Button>
+                    <Button className={"clockControl"}  onClick={coffeBreck} color="primary" >Coffe Breack</Button>
+                </div>
             </div>
 
         </Container>

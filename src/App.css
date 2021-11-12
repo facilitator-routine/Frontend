@@ -8,9 +8,26 @@
   max-height: none;
 
 }
+.Content-Home{
+  background: radial-gradient(black, transparent)
+
+}
+.App-Home{
+  max-height: none;
+  max-width: none;
+  padding-left: 25%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.Login-Spotify{
+  max-height: none;
+  max-width: none;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
 
 .App-header {
-  background-color: lightyellow;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -31,12 +48,18 @@
 
 .timer {
   font-size: 30vw;
+  line-height: 1;
 }
 
 .footer {
-  background: lightgoldenrodyellow;
-  margin-top: 3rem;
+  background: gray;
   padding: 1rem 1rem 1rem;
+  text-align: end;
+  font-style: oblique;
+}
+
+.footer span{
+  alignment: center;
 }
 #login {
   display: block;
@@ -45,16 +68,31 @@
 #loggedin {
   display: none;
 }
+.countdown-divisor{
+  margin-inline: 1rem;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 40%;
+  margin-block-end: 1%;
+  margin-block-start: 1%;
+  font-size: calc(100px + 2vmin);
+  padding: revert;
+  font-weight: 500;
+}
 .countdown-item{
   display: inline-block;
   position: relative;
   z-index: 1;
   text-align: center;
   max-width: 40%;
-  margin-block-end: 5%;
-  margin-block-start: 5%;
+  margin-block-end: 1%;
+  margin-block-start: 1%;
   font-size: calc(100px + 2vmin);
-
+  margin-inline: 2rem;
+  padding: revert;
+  font-weight: 500;
 }
 .clockLabel{
   margin-top: auto;
@@ -69,8 +107,13 @@
 .clockControl{
   margin-left: 1rem;
 }
+
+.level-wrapper{
+  background-color: darkseagreen;
+}
 .main-wrapper{
   background-color: darkseagreen;
+  margin-bottom: 29rem;
 }
 
 .player-image{
@@ -82,6 +125,17 @@
   border: 2px dashed yellowgreen;
   padding: 3px;
 
+}
+.btn-clocks{
+  padding-inline: 28rem;
+  margin-bottom: 1rem;
+}
+
+.btn-clocks-actions{
+  padding-inline: 23rem;
+  margin-bottom: 1rem;
+}
+.btn-spotify{
 }
 
 

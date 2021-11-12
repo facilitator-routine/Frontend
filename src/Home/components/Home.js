@@ -5,8 +5,10 @@ import Login from './Login'
 
 function Home({token}) {
     return (
-        <Container>
-            {token? <span> Hola</span>:<Login/>}
+        <Container className={"Content-Home"}>
+            {token? <img className={"App-Home"}
+                         alt="Facilitator routine"
+                         src="./logo.png"/>:<Login/>}
         </Container>
     );
 }

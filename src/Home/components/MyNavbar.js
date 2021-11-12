@@ -5,6 +5,7 @@ import {logout} from "../services";
 
 const logoutAndRefresh = async (access_token)  =>{
     await logout(access_token)
+    sessionStorage.removeItem('accessToken')
     window.location="/"
 }
 const MyNavbar = ({access_token}) =>{

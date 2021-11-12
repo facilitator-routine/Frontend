@@ -4,10 +4,8 @@ import {Container, Level} from "react-bulma-components";
 const MoActiveLevel = () =>{
     return (
         <Container>
-            <Level>
-                <div className="main-wrapper">
-                    <b> Por favor, asocia Facilitar Routine a tus app permitidas. Selecciona 'Escuchando en: Facilitator Routine' </b>
-                </div>
+            <Level className="level-wrapper">
+                    <b> Por favor, asocia Facilitar Routine a tus app permitidas de tu cuenta Spotify Premium. Selecciona 'Escuchando en: Facilitator Routine' </b>
             </Level>
         </Container>
     )

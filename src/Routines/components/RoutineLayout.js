@@ -22,6 +22,14 @@ const RoutineLayout = () =>{
         alarm:  ``,
         background: ``
     }
+
+    const item = {
+        _id: '',
+        type:'',
+        order: ``,
+        duration: '',
+        alarm:  ``,
+    }
     async function loadRoutines(){
         const response = await getRoutines()
         if (response.status===200){
@@ -37,20 +45,18 @@ const RoutineLayout = () =>{
 
     return (
         <Container>
-            <Header title={"Listado de Rutinas"}></Header>
-            <AddButton onClick={()=>setIsModalOpen(true)}></AddButton>
+            <Header title={"Mis Rutinas"}/>
+            <AddButton onClick={()=>setIsModalOpen(true)}/>
             {
-                isLoading && <Loading></Loading>
+                isLoading && <Loading/>
             }
             {
               !isLoading && routines.length===0 && <h2 className="title has-text-centered">No hay Rutinas creadas</h2>
             }
             {
-                !isLoading && routines.length && <ListRoutines routines={routines} loadRoutines={loadRoutines}></ListRoutines>
+                !isLoading && routines.length !== 0 && <ListRoutines routines={routines} loadRoutines={loadRoutines}/>
             }
-            <MyModal isModalOpen={isModalOpenParam} setIsModalOpen={setIsModalOpen} loadRoutines={loadRoutines} routine={routine}></MyModal>
-
-
+            <MyModal isModalOpen={isModalOpenParam} setIsModalOpen={setIsModalOpen} loadRoutines={loadRoutines} routine={routine}/>
         </Container>
         )
 }

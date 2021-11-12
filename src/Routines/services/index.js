@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = process.env.REACT_APP_BASE_URL
+const baseUrl = '/v1'
 export async function getRoutines(){
     try{
         const response = await axios({
@@ -52,8 +52,6 @@ export async function saveRoutine(routineData){
         formData.append('alarm',routineData.alarm)
         formData.append('items',routineData.items)
         formData.append('background',routineData.background)
-
-
 
          const response = await axios({
             url: `${baseUrl}/routines`, method: 'POST',data:routineData

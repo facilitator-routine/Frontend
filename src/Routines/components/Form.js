@@ -2,17 +2,16 @@ import React, {useState} from "react";
 import {Button, Form as BulmaForm} from "react-bulma-components";
 
 const {Field, Control, Label , Input} = BulmaForm
-const Form = ({handlerSubmit, routine: {_id, alarm, background, description, name, steps}}) =>{
 
+const Form = ({handlerSubmit, routine: {_id, alarm, background, description, name, steps}}) =>{
     const [formValue, setFormValue] = useState({
         _id: _id || '',
         name: name ||``,
         description: description || ``,
-        steps: steps || 1,
+        items: steps || [],
         alarm: alarm || ``,
         background: background || ``
     })
-
     const handlerChange = (event) =>{
         const {name, value} = event.target
         setFormValue({...formValue, [name]:value})
@@ -62,17 +61,7 @@ const Form = ({handlerSubmit, routine: {_id, alarm, background, description, nam
                 </Control>
             </Field>
             <Field>
-                <Label>
-                    Cantidad de pasos
-                </Label>
-                <Control>
-                    <Input placeholder="number"
-                           type="number"
-                           name="steps"
-                           value={formValue.steps}
-                           onChange={handlerChange}>
-                    </Input>
-                </Control>
+                <Button type="submit">Agregar Step</Button>
             </Field>
             <Field>
                 <Label>

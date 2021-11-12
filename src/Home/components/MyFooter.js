@@ -5,7 +5,7 @@ const MyFooter = () =>{
     return (
         <Container>
             <Footer className={"footer"}>
-                Software bajo licencia MIT
+                <span>Software bajo licencia MIT</span>
             </Footer>
         </Container>
     )

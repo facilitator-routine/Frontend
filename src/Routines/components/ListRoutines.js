@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Card, Columns, Container, Content, Heading, Image} from "react-bulma-components";
 import MyModal from "./MyModal";
 import {deleteRoutine} from "../services";
+
 const ListRoutines = ({routines, loadRoutines}) =>{
     const [isModalOpenParam, setIsModalOpen] = useState(false)
     const [routineActual, setRoutineActual] = useState(null)
@@ -13,9 +14,7 @@ const ListRoutines = ({routines, loadRoutines}) =>{
                   routines.map((routine)=> (
                       <Columns.Column size="4" key={routine._id}>
                           <Card>
-                              <Card.Image display={true}>
-                                  <Image src={"https://bulma.io/images/placeholders/1280x960.png"} size={8}></Image>
-                              </Card.Image>
+                              <Image src="./../logo2.png" size={6}/>
                               <Card.Content>
                                 <Content>
                                     <Heading>{routine.name}</Heading>
