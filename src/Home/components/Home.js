@@ -8,7 +8,7 @@ function Home({token}) {
         <Container className={"Content-Home"}>
             {token? <img className={"App-Home"}
                          alt="Facilitator routine"
-                         src="./logo.png"/>:<Login/>}
+                         src="./logo-removebg.png"/>:<Login/>}
         </Container>
     );
 }

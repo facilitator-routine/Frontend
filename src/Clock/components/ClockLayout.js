@@ -84,7 +84,7 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown}
             return startIncrease()
         }
     }
-    const coffeBreck = () => {
+    const coffeeBreak = () => {
         setMinuts(10)
         setSeconds(0)
         setIsConfiguring(false)
@@ -133,7 +133,7 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown}
                 </Input>
                 <div className={"btn-clocks"}>
                     <Button className={"clockControl"}  onClick={()=>setIsConfiguring(false)} color="primary">OK!</Button>
-                    <Button className={"clockControl"}  onClick={coffeBreck} color="primary" >Coffe Breack</Button>
+                    <Button className={"clockControl"}  onClick={coffeeBreak} color="primary" >Coffee Break</Button>
                 </div>
             </div>
 

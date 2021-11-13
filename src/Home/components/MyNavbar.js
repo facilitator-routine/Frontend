@@ -16,7 +16,7 @@ const MyNavbar = ({access_token}) =>{
                         <Link to="/" className="navbar-item">
                         <img className={"App-logo"}
                             alt="Facilitator routine"
-                            src="./logo.png"
+                            src="/logo-name.png"
                             width="112"
                              height="10vmin"
                         />
@@ -37,7 +37,7 @@ const MyNavbar = ({access_token}) =>{
                     </Navbar.Container>
                     <Navbar.Container align="end">
                         {!access_token ?
-                            <Link to="/auth/login" className="navbar-item">
+                            <Link to="/" className="navbar-item">
                                 Login
                             </Link>:
                             <a className="navbar-item" onClick={()=>logoutAndRefresh(access_token)} >Cerrar Sesion</a>

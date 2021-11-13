@@ -7,7 +7,7 @@ function Login() {
             <div className="App-header">
                 <img className={"Login-Spotify"}
                      alt="logo spotify"
-                     src="./logo-spotify.jpeg"
+                     src="./logo-spotify.png"
                 />
                 <a className="btn-spotify" href="/v1/auth/login" >
                     Login with Spotify
