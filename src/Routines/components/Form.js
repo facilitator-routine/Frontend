@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Button, Form as BulmaForm} from "react-bulma-components";
+import ItemRoutine from "./ItemRoutine";
 
 const {Field, Control, Label , Input} = BulmaForm
 
@@ -25,13 +26,11 @@ const Form = ({handlerSubmit, routine: {_id, alarm, background, description, nam
         <form onSubmit={_handlerSubmit}>
             <Field>
                 <Control>
-                    <Input placeholder="textinput"
+                    <Input
                            name="_id"
                            value={formValue._id}
                            type="hidden"
-                    >
-
-                    </Input>
+                    />
                 </Control>
             </Field>
             <Field>
@@ -39,11 +38,10 @@ const Form = ({handlerSubmit, routine: {_id, alarm, background, description, nam
                     Nombre de la Rutina
                 </Label>
                 <Control>
-                    <Input placeholder="textinput"
+                    <Input placeholder="Nombre de rutina"
                     name="name"
                     value={formValue.name}
                     onChange={handlerChange}>
-
                     </Input>
                 </Control>
             </Field>
@@ -52,7 +50,7 @@ const Form = ({handlerSubmit, routine: {_id, alarm, background, description, nam
                     Descripción
                 </Label>
                 <Control>
-                    <Input placeholder="textinput"
+                    <Input placeholder="Descripción"
                            name="description"
                            value={formValue.description}
                            onChange={handlerChange}>
@@ -61,33 +59,10 @@ const Form = ({handlerSubmit, routine: {_id, alarm, background, description, nam
                 </Control>
             </Field>
             <Field>
-                <Button type="submit">Agregar Step</Button>
-            </Field>
-            <Field>
                 <Label>
-                    Sonido de alarma
+                   Los items de tu rutina
                 </Label>
-                <Control>
-                    <Input placeholder="textinput"
-                           name="alarm"
-                           value={formValue.alarm}
-                           onChange={handlerChange}>
-
-                    </Input>
-                </Control>
-            </Field>
-            <Field>
-                <Label>
-                    Fondo
-                </Label>
-                <Control>
-                    <Input placeholder="textinput"
-                           name="background"
-                           value={formValue.background}
-                           onChange={handlerChange}>
-
-                    </Input>
-                </Control>
+                <ItemRoutine value={formValue.items}/>
             </Field>
             <Button color="primary" type="submit">Guardar</Button>
         </form>

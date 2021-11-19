@@ -137,9 +137,13 @@
 }
 .btn-spotify{
 }
+.select-handsontable{
+  width: -webkit-fill-available;
+}
 
-
-
+.buttonForm{
+  padding-top: calc(.3em - 1px)
+}
 
 
 
