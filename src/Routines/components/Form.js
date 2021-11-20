@@ -4,30 +4,41 @@ import ItemRoutine from "./ItemRoutine";
 
 const {Field, Control, Label , Input} = BulmaForm
 
-const Form = ({handlerSubmit, routine: {_id, alarm, background, description, name, steps}}) =>{
+const Form = ({handlerSubmit, routine: {_id, alarm, background, description, name, items}}) =>{
+    const itemsToData = items && items.map(item => ({order: item.order, type: item.type, duration: item.duration}))
+    const [errors, setErrors] = useState({"name":""})
     const [formValue, setFormValue] = useState({
         _id: _id || '',
         name: name ||``,
         description: description || ``,
-        items: steps || [],
+        items: itemsToData || [],
         alarm: alarm || ``,
         background: background || ``
     })
-
     const setItems = (items) => {
-        console.log("log del items submit " + items)
-
-        setFormValue({...formValue, items:items})
-        console.log("log del form submit " + formValue)
+        setFormValue(prevFormValue => {
+            return { ...prevFormValue, items:items }
+        })
     }
     const handlerChange = (event) =>{
         const {name, value} = event.target
-        setFormValue({...formValue, [name]:value})
-
+        setFormValue(prevFormValue => {
+           return {...prevFormValue, [name]:value}
+        })
     }
     const _handlerSubmit = (event) => {
         event.preventDefault()
-        handlerSubmit({...formValue})
+        if (handleValidation()) {
+            handlerSubmit({...formValue})
+        }
+    }
+    const handleValidation= (event) => {
+        let formIsValid = true;
+        if (!formValue["name"]) {
+            formIsValid = false;
+            setErrors({...errors, name: 'Nombre no puede ser vacio'});
+        }
+        return formIsValid;
     }
     return (
         <form onSubmit={_handlerSubmit}>
@@ -42,7 +53,7 @@ const Form = ({handlerSubmit, routine: {_id, alarm, background, description, nam
             </Field>
             <Field>
                 <Label>
-                    Nombre de la Rutina
+                    * Nombre de la Rutina
                 </Label>
                 <Control>
                     <Input placeholder="Nombre de rutina"
@@ -51,6 +62,7 @@ const Form = ({handlerSubmit, routine: {_id, alarm, background, description, nam
                     onChange={handlerChange}>
                     </Input>
                 </Control>
+                <span style={{ color: "red" }}>{errors["name"]}</span>
             </Field>
             <Field>
                 <Label>
@@ -67,7 +79,7 @@ const Form = ({handlerSubmit, routine: {_id, alarm, background, description, nam
             </Field>
             <Field>
                 <Label>
-                   Los items de tu rutina
+                   * Los items de tu rutina
                 </Label>
                 <ItemRoutine items={formValue.items} setItems={setItems}/>
             </Field>

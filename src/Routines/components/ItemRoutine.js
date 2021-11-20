@@ -33,9 +33,10 @@ class ItemRoutine extends React.Component {
                 order: 2,type: "", duration: ""
             }
         ]
+        console.log("items de routine: " + JSON.stringify(props.items))
         this.state = {
             hotSettings: {
-                data: initialData, //props.items,
+                data: props.items.length !== 0 ? props.items : initialData,
                 licenseKey: "non-commercial-and-evaluation",
                 colHeaders: ["Posición","Tipo", "Duración","",""],
                 observeChanges: true,
@@ -49,7 +50,7 @@ class ItemRoutine extends React.Component {
                         data: "type",
                         editor: 'select',
                         selectOptions: ['Cronómetro', 'Cuenta Regresiva'],
-                        placeholder: "Seleccione ..",
+                        placeholder: "Seleccione tipo",
                     },
                     {
                         data: "duration",
@@ -57,8 +58,7 @@ class ItemRoutine extends React.Component {
                         timeFormat: 'mm:ss',
                         correctFormat: true,
                         allowEmpty: true,
-                        readOnly: true,
-                        placeholder: "00:00",
+                        readOnly: true
                     },
                     {}
                 ],
@@ -103,7 +103,6 @@ class ItemRoutine extends React.Component {
             }
         };
     }
-
     render() {
         return (
             <Container>

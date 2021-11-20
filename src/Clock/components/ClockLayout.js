@@ -9,7 +9,8 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown}
     const [seconds, setSeconds] = useState(initialSecond)
     const [minuts, setMinuts] = useState(initialMinute)
     const [isConfiguring, setIsConfiguring] = useState(configuredFlag)
-
+    const [errors, setErrors] = useState({})
+    const [hayErrors, setHayErrors] = useState(false)
 
     let intervalRef = useRef(0);
 
@@ -94,7 +95,17 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown}
         return setMinuts(parseInt(event.target.value))
     }
     const handlerChangeSeconds = (event) =>{
+        const seconds= parseInt(event.target.value)
+        const hayError = seconds > 59
+        if(hayError){
+            setErrors({...errors, seconds: 'los segundos van de cero a cincuenta y nueve'});
+           setHayErrors(hayError)
+        }else{
+            setErrors({...errors, seconds: ''});
+        }
+        setHayErrors(hayError)
         return setSeconds(parseInt(event.target.value))
+
     }
     useEffect(() => {
         return () => clearInterval(intervalRef.current);
@@ -131,8 +142,12 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown}
                        value={getSeconds()}
                        onChange={handlerChangeSeconds}>
                 </Input>
+                <div>
+                    <span style={{ color: "red" }}>{errors["seconds"]}</span>
+                </div>
                 <div className={"btn-clocks"}>
-                    <Button className={"clockControl"}  onClick={()=>setIsConfiguring(false)} color="primary">OK!</Button>
+
+                    <Button className={"clockControl"}  disabled={hayErrors || (getSeconds()===0 && getMinutes() ===0)|| isNaN(getSeconds()) || isNaN(getMinutes())} onClick={()=>setIsConfiguring(false)} color="primary">OK!</Button>
                     <Button className={"clockControl"}  onClick={coffeeBreak} color="primary" >Coffee Break</Button>
                 </div>
             </div>
