@@ -4,28 +4,7 @@ import {HotTable} from "@handsontable/react";
 import "handsontable/dist/handsontable.min.css";
 import {Container} from "react-bulma-components";
 
-
-function RendererComboBoxComponent(props) {
-    return (
-        <>
-            <select  className="select is-normal select-handsontable" >
-                <option>Seleccione Tipo</option>
-                <option>Cronometro</option>
-                <option>Cuenta Regresiva</option>
-            </select>
-        </>
-    );
-}
-function RendererOrderComponent(props) {
-    return (
-        <>
-            <>
-                { props.value || props.row + 1}
-            </>
-        </>
-    );
-}
-
+/* // this.alter("insert_row", coords.row);
 function RendererComponent(props) {
     // The avaiable renderer-related props are:
     // - row (row index)
@@ -41,29 +20,22 @@ function RendererComponent(props) {
             {props.value}
         </>
     );
-}
-
+}*/
 const columnDeleteIndex = 3;
-
 class ItemRoutine extends React.Component {
-    constructor(props, items) {
+    constructor(props) {
         super(props);
         const initialData = [
             {
-                order: 1,
-                type: "",
-                duration: ""
+                order: 1, type: "", duration: ""
             },
             {
-                order: 2,
-                type: "",
-                duration: ""
+                order: 2,type: "", duration: ""
             }
         ]
         this.state = {
             hotSettings: {
-                //data: Handsontable.helper.createSpreadsheetData(10, 5),
-                data: initialData,
+                data: initialData, //props.items,
                 licenseKey: "non-commercial-and-evaluation",
                 colHeaders: ["Posición","Tipo", "Duración","",""],
                 observeChanges: true,
@@ -71,12 +43,13 @@ class ItemRoutine extends React.Component {
                     {
                         data: 'order',
                         type: 'numeric',
-                        readOnly: true
+                        readOnly: true,
                     },
                     {
                         data: "type",
                         editor: 'select',
-                        selectOptions: ['Cronómetro', 'Cuenta Regresiva']
+                        selectOptions: ['Cronómetro', 'Cuenta Regresiva'],
+                        placeholder: "Seleccione ..",
                     },
                     {
                         data: "duration",
@@ -96,8 +69,13 @@ class ItemRoutine extends React.Component {
                     type: null,
                     duration: null,
                 },
+                afterChange: function (change, source) {
+                    if (source === 'loadData') {
+                        return; //don't save this change
+                    }
+                    props.setItems(this.getData())
+                },
                 afterOnCellMouseDown: function(e, coords, TD) {
-
                     if (coords.col === columnDeleteIndex) {
                         this.alter("remove_row", coords.row);
                     }
@@ -108,13 +86,7 @@ class ItemRoutine extends React.Component {
                     if (col === columnDeleteIndex) {
                         cellPrp.readOnly = true;
                         cellPrp.renderer = function(
-                            instance,
-                            td,
-                            row,
-                            col,
-                            prop,
-                            value,
-                            cellProperties
+                            instance, td, row, col, prop, value, cellProperties
                         ) {
                             Handsontable.renderers.TextRenderer.apply(this, arguments);
                             td.innerHTML = '<button class="button is-small is-danger is-outlined">\n' +
@@ -124,14 +96,14 @@ class ItemRoutine extends React.Component {
                                 '            </button>';
                         };
                     }
-                    console.log("data: " + JSON.stringify(data))
                     const cond = col === 2 && data[row] && data[row][col-1] !== 'Cuenta Regresiva'
-                    cellPrp.readOnly = cond; // make cell read-only if it is first row or the text reads 'readOnly'
+                    cellPrp.readOnly = cond;
                     return cellPrp;
                 },
             }
         };
     }
+
     render() {
         return (
             <Container>

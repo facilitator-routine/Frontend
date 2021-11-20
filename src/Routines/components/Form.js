@@ -13,6 +13,13 @@ const Form = ({handlerSubmit, routine: {_id, alarm, background, description, nam
         alarm: alarm || ``,
         background: background || ``
     })
+
+    const setItems = (items) => {
+        console.log("log del items submit " + items)
+
+        setFormValue({...formValue, items:items})
+        console.log("log del form submit " + formValue)
+    }
     const handlerChange = (event) =>{
         const {name, value} = event.target
         setFormValue({...formValue, [name]:value})
@@ -62,7 +69,7 @@ const Form = ({handlerSubmit, routine: {_id, alarm, background, description, nam
                 <Label>
                    Los items de tu rutina
                 </Label>
-                <ItemRoutine value={formValue.items}/>
+                <ItemRoutine items={formValue.items} setItems={setItems}/>
             </Field>
             <Button color="primary" type="submit">Guardar</Button>
         </form>
