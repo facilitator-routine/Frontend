@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Card, Columns, Container, Content, Heading, Image} from "react-bulma-components";
 import MyModal from "./MyModal";
 import {deleteRoutine} from "../services";
+import RunRoutineLayout from "./RunRoutineLayout";
 
 const ListRoutines = ({routines, loadRoutines}) =>{
     const [isModalOpenParam, setIsModalOpen] = useState(false)
@@ -9,6 +10,7 @@ const ListRoutines = ({routines, loadRoutines}) =>{
 
     return(
         <Container>
+            <RunRoutineLayout/>
           <Columns>
               {
                   routines.map((routine)=> (
