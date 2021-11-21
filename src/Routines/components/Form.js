@@ -5,7 +5,7 @@ import ItemRoutine from "./ItemRoutine";
 const {Field, Control, Label , Input} = BulmaForm
 
 const Form = ({handlerSubmit, routine: {_id, alarm, background, description, name, items}}) =>{
-    const itemsToData = items && items.map(item => ({order: item.order, type: item.type, duration: item.duration}))
+    const itemsToData = items && items.map((item, index) => ({order: index+1, type: item.type, duration: item.duration}))
     const [errors, setErrors] = useState({"name":""})
     const [formValue, setFormValue] = useState({
         _id: _id || '',
@@ -17,7 +17,7 @@ const Form = ({handlerSubmit, routine: {_id, alarm, background, description, nam
     })
     const setItems = (items) => {
         setFormValue(prevFormValue => {
-            return { ...prevFormValue, items:items }
+            return { ...prevFormValue, items: items.map((item, index) => [index +1, ...item]) }
         })
     }
     const handlerChange = (event) =>{

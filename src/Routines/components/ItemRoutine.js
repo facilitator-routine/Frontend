@@ -4,42 +4,30 @@ import {HotTable} from "@handsontable/react";
 import "handsontable/dist/handsontable.min.css";
 import {Container} from "react-bulma-components";
 
-/* // this.alter("insert_row", coords.row);
-    // The avaiable renderer-related props are:
+/*The avaiable renderer-related props are:
     // - row (row index)
     // - col (column index)
     // - prop (column property name)
     // - TD (the HTML cell element)
-    // - cellProperties (the cellProperties object for the edited cell)
-}*/
-const columnOrderIndex = 0;
-const columndurationIndex = 2;
-const columnDeleteIndex = 3;
+    // - cellProperties (the cellProperties object for the edited cell)*/
+const columndurationIndex = 1;
+const columnDeleteIndex = 2;
 
 class ItemRoutine extends React.Component {
     constructor(props) {
         super(props);
         const initialData = [
             {
-                order: 1, type: "", duration: ""
-            },
-            {
-                order: 2,type: "", duration: ""
+                 type: "", duration: ""
             }
         ]
-        console.log("items de routine: " + JSON.stringify(props.items))
+        this.hotTableRef = React.createRef()
         this.state = {
             hotSettings: {
                 data: props.items.length !== 0 ? props.items : initialData,
                 licenseKey: "non-commercial-and-evaluation",
-                colHeaders: ["Posición","Tipo", "Duración","",""],
+                colHeaders: ["* Tipo", "Duración",""],
                 columns: [
-                    {
-                        data: 'order',
-                        type: 'numeric',
-                        readOnly: true,
-                        allowEmpty: false,
-                    },
                     {
                         data: "type",
                         editor: 'select',
@@ -58,10 +46,9 @@ class ItemRoutine extends React.Component {
                     },
                     {}
                 ],
-                rowHeaders: false,
-                colWidths: [100, 200, 200, 80],
+                rowHeaders: true,
+                colWidths: [ 200, 200, 80],
                 dataSchema: {
-                    order: null,
                     type: null,
                     duration: null,
                 },
@@ -74,6 +61,7 @@ class ItemRoutine extends React.Component {
                 afterOnCellMouseDown: function(e, coords, TD) {
                     if (coords.col === columnDeleteIndex) {
                         this.alter("remove_row", coords.row);
+                        props.setItems(this.getData())
                     }
                 },
                 cells: function(row, col) {
@@ -92,9 +80,6 @@ class ItemRoutine extends React.Component {
                                 '            </button>';
                         };
                     }
-                    if (col === columnOrderIndex) {
-                        cellPrp.readOnly = true;
-                    }
                     if(col == columndurationIndex){
                         const cond = data[row] && data[row][col-1] !== 'Cuenta Regresiva'
                         cellPrp.readOnly = cond;
@@ -105,11 +90,22 @@ class ItemRoutine extends React.Component {
                 },
             }
         };
+
+    }
+    addRow(event){
+        event.preventDefault()
+        const actualRows = this.hotTableRef.current.hotInstance.countRows()
+        this.hotTableRef.current.hotInstance.alter("insert_row", actualRows + 1);
     }
     render() {
+
         return (
+            /* <Container style={{ overflow: "hidden", height: "20vh"}}> */
             <Container>
-                    <HotTable settings={this.state.hotSettings}/>
+                <button className={"button is-primary is-light"} onClick={this.addRow.bind(this)}>
+                   Agregar Item
+                </button>
+                <HotTable settings={this.state.hotSettings} ref={this.hotTableRef}/>
             </Container>
         );
     }

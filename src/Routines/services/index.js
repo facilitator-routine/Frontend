@@ -10,6 +10,7 @@ export async function getRoutines(){
         return response
     }catch (e){
         console.log(e)
+        return { errorMessage: e.response?.data?.message || e.message }
     }
 }
 export async function deleteRoutine(routineData){
@@ -22,6 +23,7 @@ export async function deleteRoutine(routineData){
         return response
     }catch (e){
         console.log(e)
+        return { errorMessage: e.response?.data?.message || e.message }
     }
 }
 
@@ -41,7 +43,7 @@ export async function updateRoutines(routineData){
         })
         return response
     }catch (e){
-        console.log(e)
+        return { errorMessage: e.response?.data?.message || e.message }
     }
 }
 export async function saveRoutine(routineData){
@@ -58,6 +60,6 @@ export async function saveRoutine(routineData){
          })
          return response
     }catch (e){
-        console.log(e)
+        return { errorMessage: e.response?.data?.message || e.message }
     }
 }
