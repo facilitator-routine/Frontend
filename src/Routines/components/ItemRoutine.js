@@ -5,21 +5,12 @@ import "handsontable/dist/handsontable.min.css";
 import {Container} from "react-bulma-components";
 
 /* // this.alter("insert_row", coords.row);
-function RendererComponent(props) {
     // The avaiable renderer-related props are:
     // - row (row index)
     // - col (column index)
     // - prop (column property name)
     // - TD (the HTML cell element)
     // - cellProperties (the cellProperties object for the edited cell)
-    return (
-        <>
-            <i style={{ color: "#a9a9a9" }}>
-               minutos:segundos,
-            </i>{" "}
-            {props.value}
-        </>
-    );
 }*/
 const columnOrderIndex = 0;
 const columndurationIndex = 2;
@@ -61,7 +52,9 @@ class ItemRoutine extends React.Component {
                         timeFormat: 'mm:ss',
                         correctFormat: true,
                         allowEmpty: true,
-                        readOnly: true
+                        readOnly: true,
+                        allowInvalid: false,
+                        placeholder: 'mm:ss',
                     },
                     {}
                 ],
@@ -103,8 +96,10 @@ class ItemRoutine extends React.Component {
                         cellPrp.readOnly = true;
                     }
                     if(col == columndurationIndex){
-                        const cond = col === 2 && data[row] && data[row][col-1] !== 'Cuenta Regresiva'
+                        const cond = data[row] && data[row][col-1] !== 'Cuenta Regresiva'
                         cellPrp.readOnly = cond;
+                        if(cellPrp.data){
+                        }
                     }
                     return cellPrp;
                 },
