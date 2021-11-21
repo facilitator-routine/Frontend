@@ -21,7 +21,10 @@ function RendererComponent(props) {
         </>
     );
 }*/
+const columnOrderIndex = 0;
+const columndurationIndex = 2;
 const columnDeleteIndex = 3;
+
 class ItemRoutine extends React.Component {
     constructor(props) {
         super(props);
@@ -39,12 +42,12 @@ class ItemRoutine extends React.Component {
                 data: props.items.length !== 0 ? props.items : initialData,
                 licenseKey: "non-commercial-and-evaluation",
                 colHeaders: ["Posición","Tipo", "Duración","",""],
-                observeChanges: true,
                 columns: [
                     {
                         data: 'order',
                         type: 'numeric',
                         readOnly: true,
+                        allowEmpty: false,
                     },
                     {
                         data: "type",
@@ -96,8 +99,13 @@ class ItemRoutine extends React.Component {
                                 '            </button>';
                         };
                     }
-                    const cond = col === 2 && data[row] && data[row][col-1] !== 'Cuenta Regresiva'
-                    cellPrp.readOnly = cond;
+                    if (col === columnOrderIndex) {
+                        cellPrp.readOnly = true;
+                    }
+                    if(col == columndurationIndex){
+                        const cond = col === 2 && data[row] && data[row][col-1] !== 'Cuenta Regresiva'
+                        cellPrp.readOnly = cond;
+                    }
                     return cellPrp;
                 },
             }
