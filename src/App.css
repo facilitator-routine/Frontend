@@ -9,13 +9,12 @@
 
 }
 .Content-Home{
-  background: radial-gradient(black, transparent)
-
+  background: radial-gradient(black, transparent);
+  text-align: center;
 }
 .App-Home{
   max-height: none;
   max-width: none;
-  padding-left: 25%;
   padding-top: 5%;
   padding-bottom: 5%;
 }
@@ -114,6 +113,9 @@
 .main-wrapper{
   background-color: darkseagreen;
   margin-bottom: 29rem;
+}
+.leyend{
+  background-color: darkseagreen;
 }
 
 .player-image{
