@@ -15,7 +15,9 @@ const Layout = ({ children, access_token }) => {
         <Container>
             <MyNavbar access_token={access_token} />
             {access_token && <WebPlayback token={access_token} /> }
-            {children}
+            <div style={{"min-height":"80vh"}}>
+                {children}
+            </div>
             <MyFooter/>
         </Container>
     );
