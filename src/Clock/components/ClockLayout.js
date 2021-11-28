@@ -4,11 +4,11 @@ import {Button, Container, Form as BulmaForm} from "react-bulma-components";
 
 const {Input, Label} = BulmaForm
 
-
-const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown}) =>{
+const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown, isStep}) =>{
     const [seconds, setSeconds] = useState(initialSecond)
     const [minuts, setMinuts] = useState(initialMinute)
     const [isConfiguring, setIsConfiguring] = useState(configuredFlag)
+
     const [errors, setErrors] = useState({})
     const [hayErrors, setHayErrors] = useState(false)
 
@@ -25,7 +25,7 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown}
         setSeconds(0)
         clearInterval(intervalRef.current)
         intervalRef.current = 0
-        if(isCountDown){
+        if(isCountDown && !isStep){
             setIsConfiguring(true)
         }
     }
@@ -146,7 +146,6 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown}
                     <span style={{ color: "red" }}>{errors["seconds"]}</span>
                 </div>
                 <div className={"btn-clocks"}>
-
                     <Button className={"clockControl"}  disabled={hayErrors || (getSeconds()===0 && getMinutes() ===0)|| isNaN(getSeconds()) || isNaN(getMinutes())} onClick={()=>setIsConfiguring(false)} color="primary">OK!</Button>
                     <Button className={"clockControl"}  onClick={coffeeBreak} color="primary" >Coffee Break</Button>
                 </div>
