@@ -17,12 +17,10 @@ const TokenRequired = () => {
         </div>
     );
 };
-function MyRoutines({token}) {
+function MyRoutines({token, routineId} ) {
     return (
         <Container>
-            {token?  <RoutineFlow/> :<TokenRequired/>
-
-            }
+            {token?  <RoutineFlow routineId={routineId}/> :<TokenRequired/>}
         </Container>
     );
 }

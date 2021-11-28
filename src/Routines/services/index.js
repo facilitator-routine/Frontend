@@ -63,3 +63,17 @@ export async function saveRoutine(routineData){
         return { errorMessage: e.response?.data?.message || e.message }
     }
 }
+
+export async function runRoutine(routineId){
+    alert ("llegue al run rutine")
+    try{
+        const response = await axios({
+            url: `${baseUrl}/routines/{routineId}`,
+            method: 'GET'
+        })
+        return response
+    }catch (e){
+        console.log(e)
+        return { errorMessage: e.response?.data?.message || e.message }
+    }
+}

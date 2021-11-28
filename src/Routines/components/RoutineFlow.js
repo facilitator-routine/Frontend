@@ -1,14 +1,12 @@
 import {Container} from "react-bulma-components";
 import RunRoutineLayout from "./RunRoutineLayout";
-import {useState} from "react";
 import ViewListRoutines from "./ViewListRoutines";
 
-function RoutineFlow() {
-    const [runRoutine, setRunRoutine] = useState(false)
-
+function RoutineFlow({routineId}) {
     return (
         <Container>
-            {runRoutine? <RunRoutineLayout/>: <ViewListRoutines/>}
+            <p> {routineId}</p>
+            {routineId ? <RunRoutineLayout routineId={routineId} />: <ViewListRoutines/>}
         </Container>
     );
 }

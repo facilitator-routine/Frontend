@@ -12,9 +12,6 @@ const Wizard = ({ children }) => {
     const goPrevPage = () => {
         setActivePageIndex((index) => index - 1);
     };
-    const goToBack = () => {
-        //setActivePageIndex((index) => index - 1);
-    };
 
     const ButtonPrev = () =>
         activePageIndex > 0 ? (
@@ -32,18 +29,9 @@ const Wizard = ({ children }) => {
                 Siguiente
             </button>
         ) : null;
-    const ButtonBack = () =>
-            <button type="button"
-                    onClick={goToBack}
-                    className="button is-primary is-light wizard_buttons">
-                Volver
-            </button>
-        ;
+
     return (
         <div className="wizard">
-            <div className="">
-                <ButtonBack />
-            </div>
             <div className="wizard__content">{currentPage}</div>
             <div className="">
                 <ButtonPrev />

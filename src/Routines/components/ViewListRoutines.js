@@ -22,14 +22,6 @@ const ViewListRoutines = () =>{
         alarm:  ``,
         background: ``
     }
-
-    const item = {
-        _id: '',
-        type:'',
-        order: ``,
-        duration: '',
-        alarm:  ``,
-    }
     async function loadRoutines(){
         const response = await getRoutines()
         if (response.status===200){
@@ -42,7 +34,6 @@ const ViewListRoutines = () =>{
             loadRoutines()
         },[]
     )
-
     return (
         <Container>
             <Header title={"Mis Rutinas"}/>
@@ -57,7 +48,6 @@ const ViewListRoutines = () =>{
                 <h3 className="has-text-centered">No hay Rutinas creadas</h3>
             }
             {
-
                 !isLoading && routines.length !== 0 && <ListRoutines routines={routines} loadRoutines={loadRoutines}/>
             }
             <MyModal isModalOpen={isModalOpenParam} setIsModalOpen={setIsModalOpen} loadRoutines={loadRoutines} routine={routine}/>

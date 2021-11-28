@@ -43,15 +43,18 @@ function App() {
                     <Layout access_token={access_token}>
                         <Route exact path="/" children={
                             <Home token={access_token}/>
-                        } />
+                        }/>
                         <Route exact path="/routines" children={
                             <MyRoutines token={access_token}/>
-                        } />
+                        }/>
+                        <Route exact path="/routines/:routineId" render={({ match }) =>
+                            <MyRoutines token={access_token} routineId={match.params.routineId}/>
+                        }/>
                         <Route exact path="/countdown" component={Countdown} />
                         <Route exact path="/timekeeper" component={Timekeeper} />
                         <Route exact path="/auth/login" children={
                             <Home token={access_token}/>
-                        } />
+                        }/>
                     </Layout>
                 </Switch>
             </Router>
