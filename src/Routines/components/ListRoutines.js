@@ -9,7 +9,7 @@ const ListRoutines = ({routines, loadRoutines}) =>{
     const [routineActual, setRoutineActual] = useState(null)
     let history = useHistory()
 
-    const gotToRun = (routine) => {
+    const gotToRunRoutine = (routine) => {
         history.push(`/routines/${routine._id}`)
     }
     return(
@@ -25,7 +25,7 @@ const ListRoutines = ({routines, loadRoutines}) =>{
                                     <Heading>{routine.name}</Heading>
                                     <Heading subtitle size={6}>{routine.description}</Heading>
                                     <Card.Footer>
-                                        <a href="#" className="card-footer-item" onClick={()=>gotToRun(routine)} >Ejecutar</a>
+                                        <a href="#" className="card-footer-item" onClick={()=>gotToRunRoutine(routine)} >Ejecutar</a>
                                         <a onClick={()=>{setIsModalOpen(true); setRoutineActual(routine)}} className="card-footer-item">Editar</a>
                                         <a data-testid={`deleteRoutine-${routine._id}`} onClick={()=>{deleteRoutine(routine);loadRoutines()}} className="card-footer-item">Eliminar</a>
                                     </Card.Footer>

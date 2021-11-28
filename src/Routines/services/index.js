@@ -64,11 +64,10 @@ export async function saveRoutine(routineData){
     }
 }
 
-export async function runRoutine(routineId){
-    alert ("llegue al run rutine")
+export async function findRoutine(routineId){
     try{
         const response = await axios({
-            url: `${baseUrl}/routines/{routineId}`,
+            url: `${baseUrl}/routines/${routineId}`,
             method: 'GET'
         })
         return response

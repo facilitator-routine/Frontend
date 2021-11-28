@@ -1,27 +1,17 @@
 import Wizard from "./Wizard";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useHistory} from "react-router-dom";
+import {findRoutine} from "../services";
+import Timekeeper from "../../Clock/components/Timekeeper";
+import Countdown from "../../Clock/components/Countdown";
 
-const Page1 = () => {
+const PageClock = ({item}) => {
     return (
         <div>
-            <h1>Pagina 1</h1>
+            <h1>Paso: {item.order}</h1>
+            {item.type === "Cuenta Regresiva"? <Countdown duration={item.duration} isStep={true}/> :  <Timekeeper/>
+            }
         </div>
-    );
-};
-
-const Page2 = () => {
-    return (
-    <div>
-        <h1>Pagina 2</h1>
-    </div>
-    );
-};
-const Page3 = () => {
-    return (
-    <div>
-        <h1>Pagina 3</h1>
-    </div>
     );
 };
 
@@ -40,17 +30,21 @@ const ButtonBack = () => {
 };
 
 const RunRoutineLayout = ({routineId}) =>{
-
-    // useEffect
-
-    //hacer un page por item de step
+    const [routine, setRoutine] = useState({})
+    useEffect(async () => {
+        const res = await findRoutine(routineId)
+        setRoutine(res.data.routine)
+    }, []);
+    console.log(routine)
     return (
         <>
             <ButtonBack />
             <Wizard>
-                <Page1 />
-                <Page2 />
-                <Page3 />
+                {
+                    (routine?.items || []).map((item)=> (
+                        <PageClock item={item}/>
+                    ))
+                }
             </Wizard>
         </>
     );
