@@ -12,7 +12,6 @@ import {Container} from "react-bulma-components";
     // - cellProperties (the cellProperties object for the edited cell)*/
 const columndurationIndex = 1;
 const columnDeleteIndex = 2;
-
 class ItemRoutine extends React.Component {
     constructor(props) {
         super(props);
@@ -80,11 +79,10 @@ class ItemRoutine extends React.Component {
                                 '            </button>';
                         };
                     }
-                    if(col == columndurationIndex){
+                    if(col === columndurationIndex){
                         const cond = data[row] && data[row][col-1] !== 'Cuenta Regresiva'
                         cellPrp.readOnly = cond;
-                        if(cellPrp.data){
-                        }
+                        //cellPrp.allowEmpty = cond;
                     }
                     return cellPrp;
                 },

@@ -4,7 +4,7 @@ import {Loader} from "react-bulma-components";
 
 const Loading = () =>{
     return(
-        <div className="columns is-centered">
+        <div className="columns is-centered" data-testid="loader">
             <Loader></Loader>
         </div>
     )

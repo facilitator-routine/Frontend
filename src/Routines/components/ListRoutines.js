@@ -2,15 +2,12 @@ import React, {useState} from "react";
 import {Card, Columns, Container, Content, Heading, Image} from "react-bulma-components";
 import MyModal from "./MyModal";
 import {deleteRoutine} from "../services";
-import RunRoutineLayout from "./RunRoutineLayout";
 
 const ListRoutines = ({routines, loadRoutines}) =>{
     const [isModalOpenParam, setIsModalOpen] = useState(false)
     const [routineActual, setRoutineActual] = useState(null)
-
     return(
-        <Container>
-            <RunRoutineLayout/>
+        <Container data-testid="listRoutines">
           <Columns>
               {
                   routines.map((routine)=> (
@@ -24,7 +21,7 @@ const ListRoutines = ({routines, loadRoutines}) =>{
                                     <Card.Footer>
                                         <a href="#" className="card-footer-item">Ejecutar</a>
                                         <a onClick={()=>{setIsModalOpen(true); setRoutineActual(routine)}} className="card-footer-item">Editar</a>
-                                        <a onClick={()=>{deleteRoutine({routine});loadRoutines()}} className="card-footer-item">Eliminar</a>
+                                        <a data-testid={`deleteRoutine-${routine._id}`} onClick={()=>{deleteRoutine(routine);loadRoutines()}} className="card-footer-item">Eliminar</a>
                                     </Card.Footer>
                                 </Content>
                             </Card.Content>

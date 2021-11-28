@@ -9,7 +9,7 @@ import {getRoutines} from "../services";
 import Loading from "./Loading";
 
 
-const RoutineLayout = () =>{
+const ViewListRoutines = () =>{
     const [isLoading, setIsLoading] = useState(true)
     const [routines, setRoutines ] = useState([])
     const [isModalOpenParam, setIsModalOpen] = useState(false)
@@ -46,18 +46,22 @@ const RoutineLayout = () =>{
     return (
         <Container>
             <Header title={"Mis Rutinas"}/>
-            <AddButton onClick={()=>setIsModalOpen(true)}/>
             {
                 isLoading && <Loading/>
             }
             {
-              !isLoading && routines.length===0 && <h2 className="title has-text-centered">No hay Rutinas creadas</h2>
+              !isLoading && <AddButton onClick={()=>setIsModalOpen(true)}/>
             }
             {
+                !isLoading && routines.length === 0 &&
+                <h3 className="has-text-centered">No hay Rutinas creadas</h3>
+            }
+            {
+
                 !isLoading && routines.length !== 0 && <ListRoutines routines={routines} loadRoutines={loadRoutines}/>
             }
             <MyModal isModalOpen={isModalOpenParam} setIsModalOpen={setIsModalOpen} loadRoutines={loadRoutines} routine={routine}/>
         </Container>
         )
 }
-export default RoutineLayout
+export default ViewListRoutines

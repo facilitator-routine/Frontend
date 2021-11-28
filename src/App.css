@@ -13,21 +13,24 @@
   text-align: center;
 }
 .App-Home{
-  max-height: none;
+  min-height: 81vh;
   max-width: none;
   padding-top: 5%;
-  padding-bottom: 5%;
 }
 
 .Login-Spotify{
   max-height: none;
   max-width: none;
-  padding-top: 5%;
-  padding-bottom: 5%;
-}
 
+}
+.btn-spotify{
+  color: yellowgreen;
+}
+.generalConteiner{
+  min-height:81vh;
+}
 .App-header {
-  min-height: 100vh;
+  min-height: 81vh;
   display: flex;
   flex-direction: column;
   align-items: center;

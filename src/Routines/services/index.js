@@ -16,9 +16,9 @@ export async function getRoutines(){
 export async function deleteRoutine(routineData){
     try{
         const response = await axios({
-            url: `${baseUrl}/routines/{idRoutine}`,
+            url: `${baseUrl}/routines/${routineData._id}`,
             method: 'DELETE',
-            data:routineData
+            data: { routine: routineData }
         })
         return response
     }catch (e){

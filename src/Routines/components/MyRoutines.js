@@ -1,21 +1,27 @@
-import RoutineLayout from "../../Routines/components/RoutineLayout";
 import {Container} from "react-bulma-components";
 import React from "react";
+import RoutineFlow from "./RoutineFlow";
 
-function MyRoutines({token}) {
+
+const TokenRequired = () => {
     return (
-        <Container>
-            {token?  <RoutineLayout/> :
-                <div className={"Content-Home"}>
-                <div className={"leyend"}>
+        <div className={"Content-Home"}>
+            <div className={"leyend"}>
                     <span>
                         Por favor, inicie sesión para ver sus rutinas guardadas
                     </span>
-                </div>
-                <img className={"App-Home"}
-                alt="Facilitator routine"
-                src="./logo-removebg.png"/>
-                </div>
+            </div>
+            <img className={"App-Home"}
+                 alt="Facilitator routine"
+                 src="./logo-removebg.png"/>
+        </div>
+    );
+};
+function MyRoutines({token}) {
+    return (
+        <Container>
+            {token?  <RoutineFlow/> :<TokenRequired/>
+
             }
         </Container>
     );
