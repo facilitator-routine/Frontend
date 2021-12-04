@@ -15,16 +15,29 @@ const ActiveLevel = ({current_track, player, is_paused}) =>{
                     <div className="now-playing__artist">{current_track.artists[0].name}</div>
                 </Level.Item>
                 <Level.Item>
-                    <Button className="btn-spotify" onClick={() => { player.previousTrack() }} >
-                        &lt;&lt;
+                    <Button className="btn-spotify" onClick={() => { player.setVolume(0.1) }} >
+                        -
                     </Button>
-
+                    <Button className="btn-spotify" onClick={() => { player.setVolume(1) }} >
+                        +
+                    </Button>
+                </Level.Item>
+                <Level.Item>
+                    <Button className="btn-spotify" onClick={() => { player.previousTrack() }} >
+                        <span className="material-icons">
+                            skip_previous
+                        </span>
+                    </Button>
                     <Button className="btn-spotify" onClick={() => { player.togglePlay() }} >
-                        { is_paused ? "PLAY" : "PAUSE" }
+                        { is_paused ? <span className="material-icons">play_arrow</span>
+                            : <span className="material-icons">pause</span>
+                        }
                     </Button>
 
                     <Button className="btn-spotify" onClick={() => { player.nextTrack() }} >
-                        &gt;&gt;
+                        <span className="material-icons">
+                            skip_next
+                        </span>
                     </Button>
                 </Level.Item>
             </Level>

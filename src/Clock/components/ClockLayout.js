@@ -13,6 +13,7 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown,
     const [hayErrors, setHayErrors] = useState(false)
 
     let intervalRef = useRef(0);
+    let audio = new Audio("/soundAlarm.mp3")
 
     const getSeconds = () => {
         return seconds
@@ -20,11 +21,14 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown,
     const getMinutes = () => {
         return minuts
     }
-    const stop = () => {
+    const clearCountDown = () => {
         setMinuts(0)
         setSeconds(0)
         clearInterval(intervalRef.current)
         intervalRef.current = 0
+    }
+    const stop = () => {
+        clearCountDown()
         if(isCountDown && !isStep){
             setIsConfiguring(true)
         }
@@ -49,13 +53,13 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown,
                 if (prev > 0) {
                     return prev - 1;
                 } else{
-                    stop()
+                    playSound()
+                    clearCountDown()
                     return 0;
                 }
             })
         }
     }
-
     const increaseTime = () => {
         let hasNextMinute = false
         setSeconds((prev) => {
@@ -89,16 +93,21 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown,
         setMinuts(10)
         setSeconds(0)
         setIsConfiguring(false)
-
+    }
+     const playSound = () => {
+        audio.play()
     }
     const handlerChangeMinutes = (event) =>{
         return setMinuts(parseInt(event.target.value))
+    }
+    const disabledOkButton = () => {
+      return (hayErrors || (getSeconds()===0 && getMinutes() ===0)|| isNaN(getSeconds()) || isNaN(getMinutes()))
     }
     const handlerChangeSeconds = (event) =>{
         const seconds= parseInt(event.target.value)
         const hayError = seconds > 59
         if(hayError){
-            setErrors({...errors, seconds: 'los segundos van de cero a cincuenta y nueve'});
+            setErrors({...errors, seconds: 'Los segundos van de cero a cincuenta y nueve'});
            setHayErrors(hayError)
         }else{
             setErrors({...errors, seconds: ''});
@@ -125,29 +134,25 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown,
                     Ingrese Minutos y segundos:
                 </Label>
                 <Input  className="input countdown-item"
-                    placeholder="minutos"
-                       min={0}
-                       type="number"
-                       name="minuts"
+                    placeholder="minutos" min={0} type="number" name="minuts"
                        value={getMinutes()}
                        onChange={handlerChangeMinutes}>
                 </Input>
                 <span  className="countdown-divisor">:</span>
                 <Input  className="input countdown-item"
-                    placeholder="segundos"
-                       min={0}
-                       max={59}
-                       type="number"
-                       name="seconds"
-                       value={getSeconds()}
-                       onChange={handlerChangeSeconds}>
+                    placeholder="segundos" min={0} max={59} type="number" name="seconds"
+                       value={getSeconds()} onChange={handlerChangeSeconds}>
                 </Input>
                 <div>
                     <span style={{ color: "red" }}>{errors["seconds"]}</span>
                 </div>
                 <div className={"btn-clocks"}>
-                    <Button className={"clockControl"}  disabled={hayErrors || (getSeconds()===0 && getMinutes() ===0)|| isNaN(getSeconds()) || isNaN(getMinutes())} onClick={()=>setIsConfiguring(false)} color="primary">OK!</Button>
-                    <Button className={"clockControl"}  onClick={coffeeBreak} color="primary" >Coffee Break</Button>
+                    <Button className={"clockControl"}  disabled={disabledOkButton()} onClick={()=>setIsConfiguring(false)} color="primary">
+                        <span className="material-icons">done_outline</span>OK!
+                    </Button>
+                    <Button className={"clockControl"}  onClick={coffeeBreak} color="primary" placeholder="10 minutos">
+                        <span className="material-icons">free_breakfast</span>Break
+                    </Button>
                 </div>
             </div>
 

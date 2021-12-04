@@ -10,7 +10,7 @@ function Login() {
                      src="./logo-spotify.png"
                 />
                 <a className="btn-spotify" href="/v1/auth/login" >
-                    Login with Spotify
+                    <span className="material-icons">login</span>Login with Spotify
                 </a>
             </div>
         </div>

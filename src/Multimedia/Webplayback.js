@@ -59,8 +59,8 @@ function WebPlayback(props: { token: * }) {
                     player.getCurrentState().then( state => {
                         (!state)? setActive(false) : setActive(true)
                     });
-
                 }));
+
 
                 player.connect();
 

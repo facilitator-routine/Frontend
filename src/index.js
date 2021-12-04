@@ -7,7 +7,9 @@ import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App/>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"/>
+      <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );

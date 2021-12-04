@@ -26,7 +26,7 @@ const MyNavbar = ({access_token}) =>{
                 <Navbar.Menu>
                     <Navbar.Container>
                         <Link to="/timekeeper" className="navbar-item">
-                            Cronometro
+                            Cronómetro
                         </Link>
                         <Link to="/countdown" className="navbar-item">
                             Cuenta Regresiva
@@ -38,9 +38,10 @@ const MyNavbar = ({access_token}) =>{
                     <Navbar.Container align="end">
                         {!access_token ?
                             <Link to="/" className="navbar-item">
-                                Login
+                                <span className="material-icons">login</span> Login
                             </Link>:
-                            <a className="navbar-item" onClick={()=>logoutAndRefresh(access_token)} >Cerrar Sesion</a>
+                            <a className="navbar-item" onClick={()=>logoutAndRefresh(access_token)} >
+                                <span className="material-icons">logout</span> Cerrar Sesión</a>
                         }
                     </Navbar.Container>
                 </Navbar.Menu>

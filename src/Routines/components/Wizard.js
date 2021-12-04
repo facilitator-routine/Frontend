@@ -1,4 +1,5 @@
 import React from "react";
+import {useHistory} from "react-router-dom";
 
 const Wizard = ({ children }) => {
     const [activePageIndex, setActivePageIndex] = React.useState(0);
@@ -12,7 +13,19 @@ const Wizard = ({ children }) => {
     const goPrevPage = () => {
         setActivePageIndex((index) => index - 1);
     };
+    const ButtonBack = () => {
+        const history = useHistory();
 
+        const goToBack = () => {
+            history.push("/routines")
+        };
+        return (
+            <button type="button"
+                    onClick={goToBack}
+                    className="button is-primary is-light wizard_buttons">
+                Volver
+            </button>)
+    };
     const ButtonPrev = () =>
         activePageIndex > 0 ? (
             <button type="button"
@@ -34,6 +47,7 @@ const Wizard = ({ children }) => {
         <div className="wizard">
             <div className="wizard__content">{currentPage}</div>
             <div className="">
+                <ButtonBack />
                 <ButtonPrev />
                 <ButtonNext />
             </div>

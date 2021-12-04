@@ -96,14 +96,14 @@ class ItemRoutine extends React.Component {
         this.hotTableRef.current.hotInstance.alter("insert_row", actualRows + 1);
     }
     render() {
-
         return (
-            /* <Container style={{ overflow: "hidden", height: "20vh"}}> */
             <Container>
                 <button className={"button is-primary is-light"} onClick={this.addRow.bind(this)}>
                    Agregar Item
                 </button>
-                <HotTable settings={this.state.hotSettings} ref={this.hotTableRef}/>
+                <Container style={{ overflow: "auto", minHeight: "20vh", maxHeight: "30vh" }}>
+                    <HotTable settings={this.state.hotSettings} ref={this.hotTableRef}/>
+                </Container>
             </Container>
         );
     }
