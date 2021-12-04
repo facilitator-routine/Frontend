@@ -17,12 +17,12 @@ const ListRoutines = ({routines, loadRoutines}) =>{
           <Columns>
               {
                   routines.map((routine)=> (
-                      <Columns.Column size="4" key={routine._id}>
+                      <Columns.Column size="3" key={routine._id}>
                           <Card>
                               <Image src="./../logo2.png" size={4}/>
                               <Card.Content>
                                 <Content>
-                                    <Heading>{routine.name}</Heading>
+                                    <Heading size={4}>{routine.name}</Heading>
                                     <Heading subtitle size={6}>{routine.description}</Heading>
                                     <Card.Footer>
                                         <a href="#" className={`card-footer-item ${routine.items.length === 0 ? "itemEjecutarDisabled" : ""}`} onClick={()=>gotToRunRoutine(routine)} >Ejecutar</a>

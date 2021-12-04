@@ -47,8 +47,31 @@
   }
 }
 
+.title {
+  padding: 1em;
+}
+
+.addRoutine {
+  padding: .5em;
+}
+
+a:hover {
+  color: darkgreen;
+}
+a.navbar-item:hover{
+  color: darkgreen;
+}
+
+a.navbar-item:focus-within {
+  color: darkgreen;
+  text-decoration: underline darkgreen !important;
+}
+a {
+  color: black;
+}
+
 .timer {
-  font-size: 30vw;
+  font-size: 65vh;
   line-height: 1;
 }
 
@@ -78,9 +101,10 @@
   max-width: 40%;
   margin-block-end: 1%;
   margin-block-start: 1%;
-  font-size: calc(100px + 2vmin);
+  font-size: calc(100px + 8vmin);
   padding: revert;
   font-weight: 500;
+  line-height: 2.3;
 }
 .countdown-item{
   display: inline-block;
@@ -90,21 +114,15 @@
   max-width: 40%;
   margin-block-end: 1%;
   margin-block-start: 1%;
-  font-size: calc(100px + 2vmin);
+  font-size: calc(100px + 8vmin);
   margin-inline: 2rem;
   padding: revert;
   font-weight: 500;
 }
 .clockLabel{
   margin-top: auto;
+}
 
-}
-.countdown-divisor{
-  line-height: 2.0;
-}
-.navbar{
-  border-bottom-color: lightgoldenrodyellow;
-}
 .clockControl{
   margin-left: 1rem;
 }
@@ -155,4 +173,8 @@
 .itemEjecutarDisabled{
   pointer-events: none;
   color: gray;
+}
+
+.clockLayoutContainer {
+  text-align: center;
 }

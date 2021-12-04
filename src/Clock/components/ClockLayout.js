@@ -1,5 +1,4 @@
 import React, {useEffect, useRef, useState} from "react";
-import ClockControls from "./ClockControls";
 import {Button, Container, Form as BulmaForm} from "react-bulma-components";
 
 const {Input, Label} = BulmaForm
@@ -11,6 +10,8 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown,
 
     const [errors, setErrors] = useState({})
     const [hayErrors, setHayErrors] = useState(false)
+    const [isPaused, setPaused] = useState(false)
+    const [isRunning, setRunning] = useState(false)
 
     let intervalRef = useRef(0);
     let audio = new Audio("/soundAlarm.mp3")
@@ -32,10 +33,14 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown,
         if(isCountDown && !isStep){
             setIsConfiguring(true)
         }
+        setPaused(false)
+        setRunning(false)
     }
     const pause = () => {
         clearInterval(intervalRef.current)
         intervalRef.current = 0
+        setPaused(true)
+        setRunning(false)
     }
     const decreaseTime = () => {
         let hasPreviousMinute = false
@@ -47,7 +52,6 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown,
                 return 59;
             }
         })
-
         if (hasPreviousMinute) {
             setMinuts((prev) => {
                 if (prev > 0) {
@@ -83,6 +87,8 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown,
         }
     }
     const handlerStart = () => {
+        setRunning(true)
+        setPaused(false)
         if(isCountDown){
             return startDecrease()
         }else{
@@ -101,7 +107,7 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown,
         return setMinuts(parseInt(event.target.value))
     }
     const disabledOkButton = () => {
-      return (hayErrors || (getSeconds()===0 && getMinutes() ===0)|| isNaN(getSeconds()) || isNaN(getMinutes()))
+      return (hayErrors || isZero() || isNaN(getSeconds()) || isNaN(getMinutes()))
     }
     const handlerChangeSeconds = (event) =>{
         const seconds= parseInt(event.target.value)
@@ -123,24 +129,47 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown,
     const getTimer = () => {
       return getMinutes().toString().padStart(2, "0")+':'+ getSeconds().toString().padStart(2, "0")
     }
+
+    const isZero = () => {
+        return getMinutes() === 0 && getSeconds() === 0
+    }
+
+    const isPlayDisabled = () => {
+        return (isCountDown && isZero()) || isRunning
+    }
+
+    const isPauseDisabled = () => {
+        return !isRunning
+    }
+
     return (
-        <Container>
+        <Container className="clockLayoutContainer">
             <div hidden={isConfiguring}>
                 <span className="timer">{getTimer()}</span>
-                <ClockControls onClickStop={stop} onClickStart={handlerStart} onClickPause={pause}/>
+                <Container className={"btn-clocks-actions"}>
+                    <Button className={"clockControl"} onClick={handlerStart} color="primary" disabled={isPlayDisabled()}>
+                        <span className="material-icons">play_arrow</span>
+                    </Button>
+                    <Button className={"clockControl"} onClick={pause} color="primary" disabled={isPauseDisabled()}>
+                        <span className="material-icons">pause</span>
+                    </Button>
+                    <Button className={"clockControl"} onClick={stop} color="primary"><span
+                        className="material-icons">stop</span>
+                    </Button>
+                </Container>
             </div>
             <div hidden={!isConfiguring}>
                 <Label className="clockLabel">
                     Ingrese Minutos y segundos:
                 </Label>
                 <Input  className="input countdown-item"
-                    placeholder="minutos" min={0} type="number" name="minuts"
+                    placeholder="min" min={0} type="number" name="minuts"
                        value={getMinutes()}
                        onChange={handlerChangeMinutes}>
                 </Input>
                 <span  className="countdown-divisor">:</span>
                 <Input  className="input countdown-item"
-                    placeholder="segundos" min={0} max={59} type="number" name="seconds"
+                    placeholder="seg" min={0} max={59} type="number" name="seconds"
                        value={getSeconds()} onChange={handlerChangeSeconds}>
                 </Input>
                 <div>

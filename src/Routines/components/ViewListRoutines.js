@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from "react";
-import Header from "./Header";
-import AddButton from "./AddButton";
 import ListRoutines from "./ListRoutines"
 import MyModal from "./MyModal"
 import 'react-bulma-components'
-import {Container} from "react-bulma-components";
+import {Button, Container} from "react-bulma-components";
 import {getRoutines} from "../services";
 import Loading from "./Loading";
 
@@ -36,12 +34,14 @@ const ViewListRoutines = () =>{
     )
     return (
         <Container>
-            <Header title={"Mis Rutinas"}/>
+            <h2 className="title has-text-centered">
+                Mis Rutinas
+                {
+                    !isLoading && <Button className="button is-primary is-light addRoutine" onClick={()=>setIsModalOpen(true)}>+</Button>
+                }
+            </h2>
             {
                 isLoading && <Loading/>
-            }
-            {
-              !isLoading && <AddButton onClick={()=>setIsModalOpen(true)}/>
             }
             {
                 !isLoading && routines.length === 0 &&

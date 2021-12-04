@@ -25,7 +25,7 @@ const MyNavbar = ({access_token}) =>{
                 </Navbar.Brand>
                 <Navbar.Menu>
                     <Navbar.Container>
-                        <Link to="/timekeeper" className="navbar-item">
+                        <Link to="/timekeeper" className="navbar-item thecolor">
                             Cronómetro
                         </Link>
                         <Link to="/countdown" className="navbar-item">

@@ -60,10 +60,7 @@ function WebPlayback(props: { token: * }) {
                         (!state)? setActive(false) : setActive(true)
                     });
                 }));
-
-
                 player.connect();
-
             };
         }, []);
 
