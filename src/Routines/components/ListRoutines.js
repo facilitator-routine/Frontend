@@ -20,12 +20,12 @@ const ListRoutines = ({routines, loadRoutines}) =>{
                       <Columns.Column size="3" key={routine._id}>
                           <Card>
                               <Image src="./../logo2.png" size={4}/>
-                              <Card.Content>
+                              <Card.Content className={"mycard cutText"}>
                                 <Content>
-                                    <Heading size={4}>{routine.name}</Heading>
-                                    <Heading subtitle size={6}>{routine.description}</Heading>
+                                    <Heading title={routine.name} size={4}>{routine.name}</Heading>
+                                    <h4  title={routine.description} subtitle size={6}>{routine.description || "-"}</h4>
                                     <Card.Footer>
-                                        <a href="#" className={`card-footer-item ${routine.items.length === 0 ? "itemEjecutarDisabled" : ""}`} onClick={()=>gotToRunRoutine(routine)} >Ejecutar</a>
+                                        <a href="#" className={`card-footer-item ${routine.items?.length === 0 ? "itemEjecutarDisabled" : ""}`} onClick={()=>gotToRunRoutine(routine)} >Ejecutar</a>
                                         <a onClick={()=>{setIsModalOpen(true); setRoutineActual(routine)}} className="card-footer-item">Editar</a>
                                         <a data-testid={`deleteRoutine-${routine._id}`} onClick={()=>{deleteRoutine(routine);loadRoutines()}} className="card-footer-item">Eliminar</a>
                                     </Card.Footer>
@@ -38,7 +38,6 @@ const ListRoutines = ({routines, loadRoutines}) =>{
           </Columns>
          <MyModal isModalOpen={isModalOpenParam} setIsModalOpen={setIsModalOpen} routine = {routineActual} loadRoutines={loadRoutines}/>
         </Container>
-            )
-
+    )
 }
 export default ListRoutines

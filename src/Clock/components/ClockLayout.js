@@ -15,6 +15,7 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown,
 
     let intervalRef = useRef(0);
     let audio = new Audio("/soundAlarm.mp3")
+    audio.volume = 0.9;
 
     const getSeconds = () => {
         return seconds
@@ -145,7 +146,9 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown,
     return (
         <Container className="clockLayoutContainer">
             <div hidden={isConfiguring}>
-                <span className="timer">{getTimer()}</span>
+                <div className={`${isZero() && isCountDown ? "animacion" : ""}`}>
+                    <span className="timer">{getTimer()}</span>
+                </div>
                 <Container className={"btn-clocks-actions"}>
                     <Button className={"clockControl"} onClick={handlerStart} color="primary" disabled={isPlayDisabled()}>
                         <span className="material-icons">play_arrow</span>

@@ -7,7 +7,7 @@ import Countdown from "../../Clock/components/Countdown";
 const PageClock = ({item}) => {
     return (
         <div>
-            <h1>Paso: {item.order} - {item.type}</h1>
+            <h1> <b>Nro Ítem: {item.order} </b> - {item.type} {item.name? "- " + item.name: null}</h1>
             {item.type === "Cuenta Regresiva"? <Countdown duration={item.duration} isStep={true}/> :  <Timekeeper/>
             }
         </div>

@@ -6,7 +6,6 @@ import {Button, Container} from "react-bulma-components";
 import {getRoutines} from "../services";
 import Loading from "./Loading";
 
-
 const ViewListRoutines = () =>{
     const [isLoading, setIsLoading] = useState(true)
     const [routines, setRoutines ] = useState([])
@@ -37,7 +36,8 @@ const ViewListRoutines = () =>{
             <h2 className="title has-text-centered">
                 Mis Rutinas
                 {
-                    !isLoading && <Button className="button is-primary is-light addRoutine" onClick={()=>setIsModalOpen(true)}>+</Button>
+                    !isLoading && <Button className="button is-primary is-light addRoutine" onClick={()=>setIsModalOpen(true)}>
+                                <span className="material-icons">add_circle_outline</span> Crear</Button>
                 }
             </h2>
             {

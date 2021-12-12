@@ -10,8 +10,8 @@ import {Container} from "react-bulma-components";
     // - prop (column property name)
     // - TD (the HTML cell element)
     // - cellProperties (the cellProperties object for the edited cell)*/
-const columndurationIndex = 1;
-const columnDeleteIndex = 2;
+const columndurationIndex = 2;
+const columnDeleteIndex = 3;
 class ItemRoutine extends React.Component {
     constructor(props) {
         super(props);
@@ -25,8 +25,14 @@ class ItemRoutine extends React.Component {
             hotSettings: {
                 data: props.items.length !== 0 ? props.items : initialData,
                 licenseKey: "non-commercial-and-evaluation",
-                colHeaders: ["* Tipo", "Duración",""],
+                colHeaders: ["Nombre","* Tipo", "Duración",""],
+                manualRowMove: true,
                 columns: [
+                    {
+                        data: "name",
+                        type:'text',
+                        placeholder: "Nombre de Item",
+                    },
                     {
                         data: "type",
                         editor: 'select',
@@ -46,7 +52,7 @@ class ItemRoutine extends React.Component {
                     {}
                 ],
                 rowHeaders: true,
-                colWidths: [ 200, 200, 80],
+                colWidths: [ 200, 150, 100, 80],
                 dataSchema: {
                     type: null,
                     duration: null,

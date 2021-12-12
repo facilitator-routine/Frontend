@@ -27,22 +27,20 @@ const Wizard = ({ children }) => {
             </button>)
     };
     const ButtonPrev = () =>
-        activePageIndex > 0 ? (
             <button type="button"
+                disabled={!(activePageIndex > 0)}
                 onClick={goPrevPage}
                 className="button is-primary is-light wizard_buttons wizard_buttons">
                 Atrás
             </button>
-        ) : null;
+
     const ButtonNext = () =>
-        activePageIndex < pages.length - 1 ? (
             <button type="button"
+                disabled={  !(activePageIndex < pages.length - 1)}
                 onClick={goNextPage}
                 className="button is-primary is-light wizard_buttons">
                 Siguiente
             </button>
-        ) : null;
-
     return (
         <div className="wizard">
             <div className="wizard__content">{currentPage}</div>

@@ -178,3 +178,25 @@ a {
 .clockLayoutContainer {
   text-align: center;
 }
+.mycard{
+  max-height: max-content;
+}
+
+.cutText{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.animacion {
+  animation-name: example;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes example {
+  0%   {background-color: darkseagreen;}
+  25%  {background-color: yellow;}
+  50%  {background-color: yellowgreen;}
+  100% {background-color: yellow;}
+}
