@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Container, Modal} from "react-bulma-components";
 import Form from "./Form";
 import {saveRoutine, updateRoutines} from "../services";
+import swal from "sweetalert";
 
 const MyModal = ({isModalOpen, setIsModalOpen, loadRoutines, routine}) =>{
     const titulo = routine?._id?"Editar Rutina":"Crear Rutina"
@@ -14,6 +15,7 @@ const MyModal = ({isModalOpen, setIsModalOpen, loadRoutines, routine}) =>{
         }
         else{
             result = await saveRoutine(data)
+            swal("Good job!", "Se creo una rutina exitosamente", "success");
         }
         if (result.errorMessage) {
             setErrorMessage(result.errorMessage)

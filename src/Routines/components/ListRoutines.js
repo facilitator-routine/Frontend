@@ -3,12 +3,27 @@ import {Card, Columns, Container, Content, Heading, Image} from "react-bulma-com
 import MyModal from "./MyModal";
 import {deleteRoutine} from "../services";
 import {useHistory} from "react-router-dom";
+import swal from "sweetalert";
 
 const ListRoutines = ({routines, loadRoutines}) =>{
     const [isModalOpenParam, setIsModalOpen] = useState(false)
     const [routineActual, setRoutineActual] = useState(null)
     let history = useHistory()
 
+    const validarEliminar = (routineData) => {
+        swal({
+            title: "Estás seguro/a?",
+            text: "Una vez eliminada, no podrás recuperar esta rutina",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                deleteRoutine(routineData)
+                loadRoutines()
+            }
+        });
+    }
     const gotToRunRoutine = (routine) => {
         history.push(`/routines/${routine._id}`)
     }
@@ -27,7 +42,7 @@ const ListRoutines = ({routines, loadRoutines}) =>{
                                     <Card.Footer>
                                         <a href="#" className={`card-footer-item ${routine.items?.length === 0 ? "itemEjecutarDisabled" : ""}`} onClick={()=>gotToRunRoutine(routine)} >Ejecutar</a>
                                         <a onClick={()=>{setIsModalOpen(true); setRoutineActual(routine)}} className="card-footer-item">Editar</a>
-                                        <a data-testid={`deleteRoutine-${routine._id}`} onClick={()=>{deleteRoutine(routine);loadRoutines()}} className="card-footer-item">Eliminar</a>
+                                        <a data-testid={`deleteRoutine-${routine._id}`} onClick={()=>{validarEliminar(routine)}} className="card-footer-item">Eliminar</a>
                                     </Card.Footer>
                                 </Content>
                             </Card.Content>
