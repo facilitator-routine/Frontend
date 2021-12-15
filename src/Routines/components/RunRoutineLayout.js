@@ -8,7 +8,7 @@ const PageClock = ({item}) => {
     return (
         <div>
             <h1> <b>Nro Ítem: {item.order} </b> - {item.type} {item.name? "- " + item.name: null}</h1>
-            {item.type === "Cuenta Regresiva"? <Countdown duration={item.duration} isStep={true}/> :  <Timekeeper/>
+            {item.type === "Cuenta Regresiva"? <Countdown duration={item.duration} isStep={true}/> :  <Timekeeper isStep={true}/>
             }
         </div>
     );

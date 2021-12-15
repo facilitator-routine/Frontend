@@ -10,7 +10,7 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown,
 
     const [errors, setErrors] = useState({})
     const [hayErrors, setHayErrors] = useState(false)
-    const [isPaused, setPaused] = useState(false)
+
     const [isRunning, setRunning] = useState(false)
 
     let intervalRef = useRef(0);
@@ -34,13 +34,11 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown,
         if(isCountDown && !isStep){
             setIsConfiguring(true)
         }
-        setPaused(false)
         setRunning(false)
     }
     const pause = () => {
         clearInterval(intervalRef.current)
         intervalRef.current = 0
-        setPaused(true)
         setRunning(false)
     }
     const decreaseTime = () => {
@@ -89,7 +87,6 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown,
     }
     const handlerStart = () => {
         setRunning(true)
-        setPaused(false)
         if(isCountDown){
             return startDecrease()
         }else{
@@ -143,6 +140,11 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown,
         return !isRunning
     }
 
+    const reset = () => {
+        setMinuts(initialMinute)
+        setSeconds(initialSecond)
+    }
+
     return (
         <Container className="clockLayoutContainer">
             <div hidden={isConfiguring}>
@@ -159,6 +161,10 @@ const ClockLayout = ({initialSecond, initialMinute, configuredFlag, isCountDown,
                     <Button className={"clockControl"} onClick={stop} color="primary"><span
                         className="material-icons">stop</span>
                     </Button>
+                        { isStep && <Button className={"clockControl"}  onClick={reset} color="primary" disabled={!isCountDown} alt="Repetir">
+                            <span className="material-icons">replay</span>
+                        </Button>
+                        }
                 </Container>
             </div>
             <div hidden={!isConfiguring}>

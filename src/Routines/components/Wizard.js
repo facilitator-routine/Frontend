@@ -23,7 +23,7 @@ const Wizard = ({ children }) => {
             <button type="button"
                     onClick={goToBack}
                     className="button is-primary is-light wizard_buttons">
-                Volver
+                <span className="material-icons">arrow_back</span>
             </button>)
     };
     const ButtonPrev = () =>
@@ -31,7 +31,7 @@ const Wizard = ({ children }) => {
                 disabled={!(activePageIndex > 0)}
                 onClick={goPrevPage}
                 className="button is-primary is-light wizard_buttons wizard_buttons">
-                Atrás
+                <span className="material-icons">arrow_back_ios</span>
             </button>
 
     const ButtonNext = () =>
@@ -39,7 +39,7 @@ const Wizard = ({ children }) => {
                 disabled={  !(activePageIndex < pages.length - 1)}
                 onClick={goNextPage}
                 className="button is-primary is-light wizard_buttons">
-                Siguiente
+                <span className="material-icons">arrow_forward_ios</span>
             </button>
     return (
         <div className="wizard">
